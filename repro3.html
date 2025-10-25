@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Physiology of male reproductive system – ชุดแบบทดสอบ (TH)</title>
+<title>Physiology of female estrus – ชุดแบบทดสอบ (TH)</title>
 <style>
   :root{--bg:#0f172a;--card:#111827;--ink:#e5e7eb;--muted:#94a3b8;--accent:#22d3ee;--good:#22c55e;--bad:#ef4444;--warn:#f59e0b}
   *{box-sizing:border-box}
@@ -60,7 +60,7 @@
 </div>
 
   <div class="wrap">
-    <h1>Physiology of male reproductive system</h1>
+    <h1>Physiology of female estrus</h1>
     <div class="muted">โหมด: · <span class="pill">MCQ</span> · <span class="pill">True/False</span></div>
     <div class="tabs" id="tabs"></div>
   </div>
@@ -87,221 +87,216 @@ function shuffle(arr){ const a=arr.slice(); for(let i=a.length-1;i>0;i--){const 
  * MCQ / TF DATA
  ***********************/
 const MCQ = [
-  {q:"อวัยวะใดเป็นแหล่งหลักของการสร้างและหลั่ง testosterone ในเพศผู้",
-   choices:["Sertoli cell","Leydig cell","Epididymis","Prostate gland","Seminal vesicle"],
+  {q:"คำว่า ‘estrous cycle’ หมายถึงอะไร",
+   choices:["ช่วงเวลาการเป็นสัดครั้งเดียว","ระยะเวลาตั้งแต่เริ่มเป็นสัดครั้งหนึ่งถึงเริ่มครั้งถัดไป","ระยะเวลาในการตั้งท้อง","ช่วงเวลา luteal phase เท่านั้น","ระยะเวลา follicular phase เท่านั้น"],
    a:1,
-   why:"Leydig cell ระหว่างท่อสร้างอสุจิสร้าง testosterone ภายใต้การกระตุ้นของ LH"},
+   why:"estrous cycle = ช่วงเวลาจากเริ่มการเป็นสัดหนึ่งครั้งถึงการเริ่มครั้งต่อไป ครอบคลุมทั้ง follicular และ luteal phase"},
 
-  {q:"หน้าที่หลักของ Sertoli cell คืออะไร",
-   choices:["สร้าง testosterone","สร้าง inhibin และ androgen-binding protein (ABP) สนับสนุน spermatogenesis","เก็บอสุจิ","สร้าง seminal plasma","ทำลายอสุจิที่แก่"],
+  {q:"estrus phase มีลักษณะเด่นทางฮอร์โมนใด",
+   choices:["Progesterone สูงสุด","Estradiol สูงสุด","LH ต่ำสุด","FSH สูงสุด","Prolactin เด่น"],
    a:1,
-   why:"Sertoli cell สนับสนุนการพัฒนา sperm, สร้าง ABP/inhibin และเป็นส่วนของ blood-testis barrier"},
+   why:"Estrus phase → Estradiol สูงสุด กระตุ้นการแสดงอาการเป็นสัดและ LH surge"},
 
-  {q:"ฮอร์โมนใดกระตุ้น Sertoli cell ให้สนับสนุนการสร้างอสุจิ",
-   choices:["LH","FSH","GnRH","Testosterone","Prolactin"],
+  {q:"proestrus phase มีการเปลี่ยนแปลงเด่นใด",
+   choices:["Corpus luteum เสื่อมลง","Follicle เจริญภายใต้ FSH → estradiol เพิ่ม","Progesterone สูงขึ้นอย่างรวดเร็ว","Ovulation เกิดขึ้น","CL เติบโตเต็มที่"],
    a:1,
-   why:"FSH เป็น gonadotropin หลักที่กระตุ้น Sertoli cell → สนับสนุน spermatogenesis"},
+   why:"Proestrus = การเติบโตของ follicle และ estradiol เพิ่มขึ้น เตรียมสู่ estrus"},
 
-  {q:"ฮอร์โมนใดกระตุ้น Leydig cell ให้สร้าง testosterone",
-   choices:["FSH","LH","Inhibin","Prolactin","Oxytocin"],
+  {q:"metestrus phase มีเหตุการณ์สำคัญคือ",
+   choices:["Ovulation","Formation ของ corpus luteum","Luteolysis","Estradiol สูงสุด","FSH สูงสุด"],
    a:1,
-   why:"LH จาก anterior pituitary กระตุ้น Leydig cell ผลิต testosterone"},
+   why:"Metestrus = ระยะหลัง ovulation → granulosa/theca luteinization → CL ก่อตัว"},
 
-  {q:"Testosterone มีผล feedback ต่อระบบ hypothalamic–pituitary อย่างไร",
-   choices:["กระตุ้น GnRH","ยับยั้ง GnRH/LH (negative feedback)","เพิ่ม FSH","ไม่มีผล","เพิ่ม Prolactin"],
-   a:1,
-   why:"Testosterone กด GnRH ที่ hypothalamus และ LH ที่ pituitary"},
-
-  {q:"Inhibin จาก Sertoli cell มีหน้าที่ยับยั้งการหลั่งฮอร์โมนใด",
-   choices:["LH","FSH","GnRH","Testosterone","Oxytocin"],
-   a:1,
-   why:"Inhibin selective feedback ลดการหลั่ง FSH จาก anterior pituitary"},
-
-  {q:"ระยะต่าง ๆ ของ spermatogenesis เรียงลำดับถูกต้องคือ",
-   choices:["Spermatogonia → Spermatid → Primary spermatocyte → Secondary spermatocyte","Spermatogonia → Primary spermatocyte → Secondary spermatocyte → Spermatid → Spermatozoa","Primary spermatocyte → Spermatogonia → Spermatozoa","Secondary spermatocyte → Spermatogonia → Spermatid → Spermatozoa","Spermatid → Primary spermatocyte → Spermatozoa"],
-   a:1,
-   why:"เซลล์ต้นกำเนิด → Primary → Secondary → Spermatid → Spermatozoa"},
-
-  {q:"กระบวนการใดเปลี่ยน spermatid ให้เป็น spermatozoa ที่มีหัวและหาง",
-   choices:["Spermiation","Spermiogenesis","Capacitation","Acrosome reaction","Fertilization"],
-   a:1,
-   why:"Spermiogenesis คือการเปลี่ยน spermatid ให้มีรูปร่างสมบูรณ์เป็น spermatozoa"},
-
-  {q:"Epididymis มีหน้าที่หลักใด",
-   choices:["หลั่ง testosterone","ให้พลังงานแก่อสุจิ","ทำให้อสุจิ mature และเคลื่อนไหวได้ พร้อมเก็บสำรองชั่วคราว","กระตุ้น capacitation","สร้าง prostaglandin"],
-   a:2,
-   why:"Epididymis ช่วย maturation และ storage ของ sperm ก่อน ejaculation"},
-
-  {q:"Accessory sex gland ใดพบในสัตว์เพศผู้ทุกชนิด",
-   choices:["Seminal vesicle","Prostate gland","Bulbourethral gland","Ampulla","Cowper’s gland"],
-   a:1,
-   why:"Prostate gland พบในสัตว์เพศผู้ทุกชนิด แม้ขนาดแตกต่างกัน"},
-
-  {q:"Prostate gland มีหน้าที่สำคัญใดต่อ semen",
-   choices:["สร้างส่วนที่ให้พลังงาน (fructose)","สร้างของเหลว buffer และเอนไซม์ที่ช่วยการเคลื่อนไหวของ sperm","หลั่ง testosterone","ผลิต progesterone","เก็บ spermatozoa"],
-   a:1,
-   why:"ของเหลวจาก prostate ช่วยปรับ pH และมีเอนไซม์เพิ่ม motility ของ sperm"},
-
-  {q:"Seminal vesicle มีหน้าที่หลักคือ",
-   choices:["ผลิต spermatozoa","สร้าง seminal plasma ส่วนใหญ่และให้พลังงาน (fructose)","กระตุ้น acrosome reaction","ผลิต LH","สร้าง progesterone"],
-   a:1,
-   why:"Seminal vesicle สร้างของเหลวส่วนใหญ่ของ semen และ fructose เป็นพลังงานให้ sperm"},
-
-  {q:"Bulbourethral gland มีหน้าที่เด่นคือ",
-   choices:["ผลิต prostaglandin","ผลิตของเหลวหล่อลื่นและล้างท่อปัสสาวะก่อน ejaculation","ผลิต sperm","สร้าง testosterone","สร้าง seminal vesicle secretion"],
-   a:1,
-   why:"Bulbourethral gland หลั่งมูกหล่อลื่นและล้าง urethra ก่อนหลั่งน้ำเชื้อ"},
-
-  {q:"การ descent ของ testis ระหว่างพัฒนาตัวอ่อนอาศัยโครงสร้างใดช่วยดึงลงถุงอัณฑะ",
-   choices:["Cremaster muscle","Tunica albuginea","Gubernaculum","Vas deferens","Scrotal septum"],
-   a:2,
-   why:"Gubernaculum เป็นเส้นใยเชื่อมดึง testis จากช่องท้องลง scrotum"},
-
-  {q:"Cryptorchidism หมายถึงภาวะใด",
-   choices:["ขาด testosterone","testis ไม่ลงถุงอัณฑะ","ไม่มี epididymis","ไม่มี prostate gland","ไม่มี seminal vesicle"],
-   a:1,
-   why:"Cryptorchidism คือภาวะอัณฑะค้างในช่องท้องหรือ inguinal canal"},
-
-  {q:"ผลของ cryptorchidism ที่สำคัญต่อ fertility คือ",
-   choices:["มี sperm ปกติแต่ไม่มี testosterone","มี testosterone ปกติแต่ spermatogenesis เสีย","ไม่มีทั้ง sperm และ testosterone","สร้าง sperm มากเกิน","inhibin สูงผิดปกติ"],
-   a:1,
-   why:"Leydig cell ยังทำงานได้ → testosterone ปกติ แต่ spermatogenesis เสียเพราะอุณหภูมิสูง"},
-
-  {q:"การรักษา cryptorchidism บางกรณีทำได้โดยการกระตุ้นด้วยฮอร์โมนใด",
-   choices:["hCG หรือ GnRH","FSH","Inhibin","Estrogen","Oxytocin"],
+  {q:"diestrus phase มีลักษณะเด่นคือ",
+   choices:["Progesterone สูงสุดจาก CL","Estradiol สูงสุด","LH surge","ไม่มี CL","Follicle เจริญเต็มที่"],
    a:0,
-   why:"hCG หรือ GnRH กระตุ้น Leydig cell ให้ผลิต testosterone → ช่วยให้ testis เคลื่อนลง"},
+   why:"Diestrus = ระยะ CL ทำงานเต็มที่ Progesterone สูงสุด คงเยื่อบุโพรงมดลูก"},
 
-  {q:"ส่วนประกอบใดของ sperm ทำหน้าที่ผลิตพลังงานสำหรับการเคลื่อนที่",
-   choices:["Head","Acrosome","Midpiece","Tail","Axoneme"],
-   a:2,
-   why:"Midpiece มี mitochondria จำนวนมากผลิต ATP สำหรับการเคลื่อนไหว"},
+  {q:"ในสัตว์ชนิดใด luteolysis ขึ้นกับ PGF₂α จากมดลูก",
+   choices:["สัตว์ไม่มีมดลูกเช่นสุนัข","สัตว์มีมดลูกเช่นโค แกะ สุกร","สัตว์ปีก","สัตว์ทะเล","สัตว์เลี้ยงลูกด้วยนมทุกชนิดเท่ากัน"],
+   a:1,
+   why:"PGF₂α จาก endometrium → ผ่านหลอดเลือด ipsilateral ไป CL → luteolysis ในโค แกะ สุกร"},
 
-  {q:"Acrosome บนหัวอสุจิมีเอนไซม์หลักเพื่อ",
-   choices:["ละลาย zona pellucida ของไข่","ผลิต ATP","เคลื่อนไหว","สังเคราะห์ DNA","ยึดผนังท่ออสุจิ"],
+  {q:"สัตว์ชนิดใดเป็น polyestrous ตลอดปี",
+   choices:["โคและสุกร","สุนัข","แมว","ม้า","แพะ"],
    a:0,
-   why:"Acrosome มีเอนไซม์ hyaluronidase และ acrosin ช่วยให้ sperm ทะลุ zona pellucida"},
+   why:"โคและสุกรมีวงรอบ estrous ตลอดปี (non-seasonal polyestrous)"},
 
-  {q:"ฮอร์โมนที่ควบคุม sexual behavior (libido) ของเพศผู้โดยตรงคือ",
-   choices:["FSH","Progesterone","Oxytocin","Testosterone","Prolactin"],
+  {q:"สัตว์ชนิดใดเป็น seasonally polyestrous แบบ long-day breeder",
+   choices:["แกะ","แพะ","ม้า","แมว","โค"],
+   a:2,
+   why:"ม้าเป็น long-day breeder → เป็นสัดเมื่อวันยาว (ฤดูร้อน)"},
+
+  {q:"สัตว์ชนิดใดเป็น seasonally polyestrous แบบ short-day breeder",
+   choices:["โค","ม้า","สุนัข","แกะและแพะ","สุกร"],
    a:3,
-   why:"Testosterone ควบคุมพฤติกรรมทางเพศและความต้องการทางเพศ"},
+   why:"แกะและแพะเป็น short-day breeder → เป็นสัดเมื่อวันสั้น (ฤดูหนาว)"},
 
-  {q:"Penile erection ถูกควบคุมโดยระบบประสาทใด",
-   choices:["Sympathetic","Parasympathetic ผ่าน pelvic nerve","Somatic motor","CNS motor cortex","Spinal inhibitory reflex"],
-   a:1,
-   why:"Parasympathetic (pelvic nerve) → NO-mediated vasodilation ของ corpus cavernosum → erection"},
-
-  {q:"การหลั่ง (emission) อยู่ภายใต้การควบคุมของระบบประสาทใด",
-   choices:["Parasympathetic","Sympathetic","Somatic","Central inhibitory","Vagus nerve"],
-   a:1,
-   why:"Emission ควบคุมโดย sympathetic → บีบตัว vas deferens, seminal vesicle, prostate"},
-
-  {q:"การหลั่งน้ำเชื้อออก (ejaculation) เป็นรีเฟล็กซ์ผ่านเส้นประสาทใด",
-   choices:["Sympathetic","Parasympathetic","Pudendal nerve (somatic reflex)","Cranial nerve X","Glossopharyngeal nerve"],
+  {q:"สุนัขจัดเป็นสัตว์ที่มีลักษณะรอบสืบพันธุ์แบบใด",
+   choices:["Polyestrous ตลอดปี","Seasonal breeder","Monoestrous","Induced ovulator","Aseasonal polyestrous"],
    a:2,
-   why:"Ejaculation reflex ผ่าน pudendal nerve → หด ischiocavernosus & bulbospongiosus"},
+   why:"สุนัขมีรอบสืบพันธุ์ปีละ 1–2 ครั้ง (monoestrous)"},
 
-  {q:"Oxytocin ในเพศผู้มีบทบาทใด",
-   choices:["ยับยั้ง ejaculation","ช่วยการหลั่ง semen โดยกระตุ้นการบีบตัวของท่อและ accessory gland","เพิ่มการสร้าง testosterone","ลดการหดตัวของกล้ามเนื้อ smooth muscle","เพิ่ม FSH"],
+  {q:"แมวจัดเป็นสัตว์ชนิดใดในเชิงการตกไข่",
+   choices:["Spontaneous ovulator","Induced ovulator","Seasonal monoestrous","Silent ovulator","Continuous ovulator"],
    a:1,
-   why:"Oxytocin ช่วยบีบตัวท่ออสุจิและต่อม accessory gland ขณะหลั่ง"},
+   why:"แมวต้องการการกระตุ้นจาก mating → reflex LH surge → ovulation"},
 
-  {q:"ระยะเวลาที่ sperm ใช้ maturation ใน epididymis โดยเฉลี่ยประมาณ",
-   choices:["1–2 วัน","5–10 วัน","10–14 วัน","30 วัน","60 วัน"],
-   a:2,
-   why:"sperm ต้องผ่าน epididymis ราว 10–14 วันเพื่อ maturation ก่อน ejaculation"},
-
-  {q:"สภาพแวดล้อมเหมาะสมของ sperm ใน female tract คือ",
-   choices:["กรดมาก","เป็นกลางถึงด่างเล็กน้อย","เป็นกรดแรง","มีอุณหภูมิต่ำ","มี estrogen ต่ำ"],
-   a:1,
-   why:"Sperm เคลื่อนไหวดีสุดในสภาพ pH เป็นกลาง–ด่างเล็กน้อย"},
-
-  {q:"ในสุนัข ส่วนของ ejaculate ที่มี sperm เข้มข้นสุดคือ",
-   choices:["Pre-sperm fraction","Sperm-rich fraction","Prostatic fraction","ทั้งหมดเท่ากัน","ไม่มีการแบ่งชั้น"],
-   a:1,
-   why:"ส่วน sperm-rich fraction มี sperm มากสุด ขณะที่ prostatic fraction เป็นของเหลวเจือจาง"},
-
-  {q:"ลักษณะของ semen ปกติในสุนัขคือ",
-   choices:["ใสไม่มีสี","ขุ่นหรือขาวขุ่น, pH ~6.2–7.2, motility >75%","แดงเข้ม","เหลืองเข้ม","มีกลิ่นแรงและ pH >8.5"],
-   a:1,
-   why:"semen ปกติควรขาวขุ่น, motility >75%, pH ใกล้เป็นกลาง"},
-
-  {q:"สาเหตุสำคัญของภาวะ oligospermia ในสัตว์เพศผู้คือ",
-   choices:["Cryptorchidism, ความร้อน, การติดเชื้อ, ความเครียด","ขาด testosterone จาก CL","Progesterone สูง","Estrogen ต่ำ","Oxytocin มากเกิน"],
+  {q:"ในสุนัขระยะ estrus มักมีลักษณะภายนอกอย่างไร",
+   choices:["Vulva ยุบลง, discharge ใส, ยอมผสม","Vulva บวมมาก, discharge เป็นเลือด, ไม่ยอมผสม","Vulva บวมเล็กน้อย, discharge เหลือง, ไม่ยอมผสม","Vulva ยุบ, ไม่มี discharge","Vulva ซีดและเย็น"],
    a:0,
-   why:"Cryptorchidism, heat stress, infection, toxin → spermatogenesis ลด → oligospermia"},
+   why:"ช่วง estrus → vulva บวมลดลง, discharge ใส, แม่สุนัขยอมผสม"},
 
-  {q:"Benign prostatic hyperplasia (BPH) ในสุนัขสูงอายุเกิดจากกลไกใด",
-   choices:["ขาด testosterone","LH สูงเกิน","การเปลี่ยน testosterone → DHT ใน prostate มากขึ้นจากอิทธิพล estrogen","Progesterone สูง","Inhibin ต่ำ"],
-   a:2,
-   why:"BPH เกิดจาก estrogen:testosterone ratio เปลี่ยน ทำให้ prostate ไวต่อ DHT → hyperplasia"},
+  {q:"ระยะ proestrus ในสุนัขมีลักษณะเด่นข้อใด",
+   choices:["Vulva บวมมาก discharge เป็นเลือด","Vulva ยุบ discharge ใส","CL ทำงาน","ไม่มีการเปลี่ยนแปลง","ไข่ตกแล้ว"],
+   a:0,
+   why:"proestrus = เริ่มบวมแดง discharge เป็นเลือด ยังไม่ยอมผสม"},
 
-  {q:"การทำหมันเพศผู้ (castration) ส่งผลอย่างไรต่อ BPH",
-   choices:["เพิ่มขนาดต่อมลูกหมาก","ทำให้ต่อมลูกหมากฝ่อและอาการดีขึ้น","ไม่มีผล","ทำให้ testosterone เพิ่ม","กระตุ้น LH surge"],
+  {q:"ในสุนัข ช่วงที่เกิด ovulation คือระยะใดของ cycle",
+   choices:["Proestrus","Estrus","Metestrus","Diestrus","Anestrus"],
    a:1,
-   why:"Castration ลด testosterone → ลด DHT → ต่อมลูกหมากฝ่อและอาการดีขึ้น"}
+   why:"สุนัขตกไข่ในช่วงกลาง estrus ภายหลัง LH surge"},
+
+  {q:"หลังการตกไข่ในสุนัข LH ยังคงสูงต่อเนื่องอีกประมาณ",
+   choices:["ไม่ถึง 12 ชม.","1–3 วัน","5–7 วัน","10 วัน","15 วัน"],
+   a:1,
+   why:"LH surge ยาว ~1–3 วันในสุนัข ช่วยกระตุ้น ovulation และ luteinization"},
+
+  {q:"ในโค ระยะเวลาของ estrous cycle โดยเฉลี่ยคือ",
+   choices:["7 วัน","14 วัน","21 วัน","28 วัน","35 วัน"],
+   a:2,
+   why:"รอบสืบพันธุ์ของโคเฉลี่ย 21 วัน"},
+
+  {q:"ในโค ช่วงแสดงอาการเป็นสัด (estrus) ใช้เวลาประมาณ",
+   choices:["6–12 ชม.","12–18 ชม.","1–2 วัน","3–4 วัน","5–7 วัน"],
+   a:1,
+   why:"estrus period ของโคประมาณ 12–18 ชม. (ยอมรับผสมช่วงนี้)"},
+
+  {q:"การตกไข่ในโคเกิดหลังจาก LH surge ประมาณกี่ชั่วโมง",
+   choices:["6 ชม.","12 ชม.","24–30 ชม.","48 ชม.","60 ชม."],
+   a:2,
+   why:"ในโค ovulation เกิดหลัง LH surge ราว 24–30 ชม."},
+
+  {q:"ในสุกร estrous cycle มีระยะเวลาโดยเฉลี่ย",
+   choices:["10 วัน","14 วัน","21 วัน","28 วัน","35 วัน"],
+   a:2,
+   why:"สุกรมีรอบเฉลี่ย 21 วันคล้ายโค"},
+
+  {q:"ระยะ estrus ในสุกรใช้เวลาประมาณ",
+   choices:["6–12 ชม.","24–48 ชม.","3–4 วัน","5–7 วัน","7–10 วัน"],
+   a:1,
+   why:"สุกรเป็นสัดประมาณ 2 วัน และยอมผสมในช่วงนี้"},
+
+  {q:"ในม้า การตกไข่เกิดเมื่อใดของรอบ estrus",
+   choices:["วันแรกของการเป็นสัด","กลางระยะเป็นสัด","วันท้ายของการเป็นสัด","หลังหมดสัด","ช่วง diestrus"],
+   a:2,
+   why:"ม้า ovulate ช่วงท้าย estrus (1–2 วันก่อนหมดสัด)"},
+
+  {q:"Estrus behavior ของม้าแสดงออกเมื่อมีฮอร์โมนใดสูง",
+   choices:["Progesterone","Estradiol","LH","FSH","Inhibin"],
+   a:1,
+   why:"Estradiol จาก dominant follicle สูง → ทำให้ม้าแสดงพฤติกรรมยอมผสม"},
+
+  {q:"ในม้า ระยะเวลาของ estrous cycle โดยเฉลี่ยคือ",
+   choices:["10 วัน","14 วัน","21 วัน","25 วัน","30 วัน"],
+   a:2,
+   why:"ม้ามีรอบสืบพันธุ์เฉลี่ย 21 วัน"},
+
+  {q:"ในแมว ระยะ proestrus มีลักษณะเด่นคือ",
+   choices:["ยอมผสม","ยังไม่ยอมผสมแต่เริ่มแสดงพฤติกรรมเรียกผสม","ไม่มีพฤติกรรม","มี ovulation เกิด","CL ทำงาน"],
+   a:1,
+   why:"Proestrus แมว → เริ่มร้อง เริ่มถู แต่ยังไม่ยอมผสม"},
+
+  {q:"ในแมว ถ้าไม่มีการผสม จะเข้าสู่ระยะใดหลัง estrus",
+   choices:["Pregnancy","Pseudopregnancy","Diestrus","Anestrus","Luteal phase ยาวนาน"],
+   a:3,
+   why:"แมวเป็น induced ovulator ถ้าไม่ผสม → ไม่มี CL → เข้าสู่ anestrus"},
+
+  {q:"ในแมว การตกไข่เกิดกี่ชั่วโมงหลัง mating",
+   choices:["2–4 ชม.","12–24 ชม.","24–36 ชม.","48–72 ชม.",">72 ชม."],
+   a:1,
+   why:"แมว ovulate 12–24 ชม. หลัง mating ซึ่งกระตุ้น LH surge"},
+
+  {q:"ในโค ระยะ luteal phase ครอบคลุมช่วงใด",
+   choices:["Proestrus–Estrus","Metestrus–Diestrus","Anestrus","ทุกระยะ","เฉพาะ estrus"],
+   a:1,
+   why:"Luteal phase = Metestrus + Diestrus (มี CL และ progesterone สูง)"},
+
+  {q:"estrus detection ในโคใช้สังเกตอะไรเป็นหลัก",
+   choices:["กินอาหารลดลงและยืนให้ผสม (standing heat)","ตกไข่เห็นได้ชัด","หางตก","อุณหภูมิร่างกายต่ำ","สีปัสสาวะเปลี่ยน"],
+   a:0,
+   why:"Standing heat เป็นสัญญาณแน่ชัดที่สุดของ estrus ในโค"},
+
+  {q:"Prostaglandin F₂α ใช้ทางคลินิกเพื่อ",
+   choices:["กระตุ้น follicle growth","กระตุ้น luteolysis ยุติ luteal phase และทำให้เข้าสู่ estrus","กระตุ้นตกไข่","ยับยั้งการตกไข่","กระตุ้น CL retention"],
+   a:1,
+   why:"PGF₂α ยับยั้ง CL ทำให้เกิด luteolysis และ cycle เริ่มใหม่"},
+
+  {q:"การเหนี่ยวนำเป็นสัดในสัตว์ฤดูกาล เช่น แพะ สามารถทำได้โดย",
+   choices:["ให้ Progesterone ต่อเนื่อง","ให้แสงมากขึ้นและ prostaglandin","ใช้แสงเทียมเลียนแบบวันสั้นและให้ P4 withdrawal","ฉีด Estrogen","หยุดให้อาหาร"],
+   a:2,
+   why:"Short-day breeders เช่น แพะ ใช้ photoperiod ควบคุม → ใช้แสงเทียมเลียนแบบวันสั้น + P4 withdrawal กระตุ้นสัด"}
 ];   // เติมโจทย์ทีหลังได้
 const TF  = [
-  {q:"Testis ทำหน้าที่ทั้งสร้างอสุจิและสร้างฮอร์โมนเพศชาย", a:true,
-   why:"Seminiferous tubule สร้าง sperm ส่วน Leydig cell ระหว่างท่อสร้าง testosterone"},
+  {q:"คำว่า estrous cycle หมายถึงช่วงเวลาจากการเริ่มเป็นสัดครั้งหนึ่งถึงการเริ่มครั้งต่อไป", a:true,
+   why:"เป็นนิยามของวงรอบการเป็นสัด (จาก estrus หนึ่งครั้งถึงครั้งถัดไป)"},
 
-  {q:"Leydig cell ตอบสนองต่อ FSH เพื่อสร้าง testosterone", a:false,
-   why:"Leydig cell ตอบสนองต่อ LH ไม่ใช่ FSH"},
+  {q:"Estrus phase เป็นระยะที่ progesterone สูงที่สุด", a:false,
+   why:"Estrus phase มี estradiol สูงสุด ส่วน progesterone ต่ำ"},
 
-  {q:"Sertoli cell เป็นตัวสร้าง androgen-binding protein (ABP)", a:true,
-   why:"ABP จาก Sertoli ทำให้ testosterone ในท่อสร้างอสุจิสูงเพียงพอสำหรับ spermatogenesis"},
+  {q:"Diestrus phase เป็นช่วงที่ corpus luteum ทำงานและ progesterone สูง", a:true,
+   why:"CL ทำงานเต็มที่ในระยะ diestrus เพื่อคงสภาพเยื่อบุโพรงมดลูก"},
 
-  {q:"FSH กระตุ้น Leydig cell โดยตรง", a:false,
-   why:"FSH กระตุ้น Sertoli cell ส่วน Leydig ถูกกระตุ้นโดย LH"},
+  {q:"Proestrus เป็นระยะที่ follicle เจริญและ estradiol เพิ่มขึ้น", a:true,
+   why:"FSH กระตุ้น follicle เจริญและ estradiol เพิ่มในช่วง proestrus"},
 
-  {q:"Inhibin จาก Sertoli cell ลดการหลั่ง FSH จาก anterior pituitary", a:true,
-   why:"Inhibin ทำหน้าที่ยับยั้ง FSH เฉพาะเจาะจง"},
+  {q:"Metestrus เป็นระยะที่ CL กำลังเสื่อม", a:false,
+   why:"Metestrus คือช่วงเริ่มก่อตัวของ CL หลัง ovulation"},
 
-  {q:"Spermatogenesis ต้องการอุณหภูมิสูงกว่าแกนร่างกาย", a:false,
-   why:"ต้องต่ำกว่าแกนร่างกายประมาณ 2–3°C เพื่อการสร้างอสุจิที่สมบูรณ์"},
+  {q:"สุนัขจัดเป็นสัตว์ monoestrous", a:true,
+   why:"สุนัขมีรอบสืบพันธุ์ 1–2 ครั้งต่อปี ถือเป็น monoestrous"},
 
-  {q:"Gubernaculum มีบทบาทในการดึงอัณฑะลงสู่ถุงอัณฑะ", a:true,
-   why:"โครงสร้างนี้เป็นเส้นใยช่วยนำทาง testis ลง scrotum ระหว่างพัฒนาตัวอ่อน"},
+  {q:"แมวจัดเป็น spontaneous ovulator", a:false,
+   why:"แมวเป็น induced ovulator ต้องการการกระตุ้นจาก mating"},
 
-  {q:"Cryptorchidism ทำให้ระดับ testosterone ลดลงอย่างมากเสมอ", a:false,
-   why:"Leydig cell ยังสร้าง testosterone ได้แต่ spermatogenesis เสีย"},
+  {q:"โคและสุกรเป็น polyestrous ตลอดปี", a:true,
+   why:"โคและสุกรมีรอบสืบพันธุ์เกิดซ้ำทั้งปี (non-seasonal polyestrous)"},
 
-  {q:"Epididymis เป็นที่ที่อสุจิกลายเป็นตัวอสุจิที่เคลื่อนไหวได้", a:true,
-   why:"Sperm เริ่ม mature และมี motility ใน epididymis"},
+  {q:"ม้าเป็น short-day breeder", a:false,
+   why:"ม้าเป็น long-day breeder คือเป็นสัดเมื่อวันยาว"},
 
-  {q:"Accessory sex gland ทุกชนิดพบในทุกสปีชีส์", a:false,
-   why:"แต่ละสปีชีส์มี gland แตกต่าง เช่น สุนัขมีเฉพาะ prostate"},
+  {q:"แกะและแพะเป็น short-day breeder", a:true,
+   why:"เป็นสัดเมื่อวันสั้น เช่นช่วงฤดูหนาว"},
 
-  {q:"Prostate gland เป็นต่อมเดียวที่พบในสัตว์เพศผู้ทุกชนิด", a:true,
-   why:"ทุกชนิดมี prostate แม้ขนาดและรูปร่างต่างกัน"},
+  {q:"ในโค ระยะ estrus ใช้เวลาประมาณ 12–18 ชั่วโมง", a:true,
+   why:"ช่วงที่ยอมให้ผสมเรียกว่า standing heat ใช้เวลาราว 12–18 ชม."},
 
-  {q:"Seminal vesicle สร้างของเหลวที่มี fructose เป็นพลังงานให้ sperm", a:true,
-   why:"Fructose จาก seminal vesicle เป็นพลังงานหลักให้ sperm"},
+  {q:"การตกไข่ในโคเกิดขึ้นก่อนการยืนให้ผสม", a:false,
+   why:"Ovulation เกิดหลัง standing heat ราว 10–12 ชม."},
 
-  {q:"Bulbourethral gland มีหน้าที่สร้างสารหล่อลื่นและล้างท่อก่อนหลั่งน้ำเชื้อ", a:true,
-   why:"ต่อมนี้หลั่ง mucus ช่วยหล่อลื่นและล้าง urethra ก่อน ejaculation"},
+  {q:"ในม้า การตกไข่เกิดช่วงท้ายของระยะเป็นสัด", a:true,
+   why:"ม้ามักตกไข่ 1–2 วันก่อนหมดสัด"},
 
-  {q:"การแข็งตัวขององคชาต (erection) อยู่ภายใต้การควบคุมของระบบ sympathetic", a:false,
-   why:"Erection ควบคุมโดย parasympathetic ผ่าน nitric oxide (NO) ทำให้หลอดเลือดขยาย"},
+  {q:"สุนัขตกไข่ในช่วงกลางของระยะ estrus", a:true,
+   why:"ในสุนัข LH surge และ ovulation เกิดกลาง estrus"},
 
-  {q:"Emission phase ของการหลั่งน้ำเชื้อควบคุมโดยระบบ sympathetic", a:true,
-   why:"Sympathetic บีบตัว vas deferens และ accessory glands ส่งของเหลวไป urethra"},
+  {q:"ในแมว หากไม่มีการผสมจะไม่มี CL ก่อตัว", a:true,
+   why:"แมวเป็น induced ovulator → ต้องมีการผสมถึงจะเกิด CL"},
 
-  {q:"Ejaculation เป็น reflex ที่ผ่าน pudendal nerve", a:true,
-   why:"Ejaculation เกิดจากการหดตัวของกล้ามเนื้อ ischiocavernosus และ bulbospongiosus ภายใต้ pudendal reflex"},
+  {q:"PGF₂α จากมดลูกมีบทบาทหลักในการทำให้ CL เสื่อมในโค", a:true,
+   why:"PGF₂α จาก endometrium กระตุ้น luteolysis ในโค"},
 
-  {q:"Oxytocin ไม่มีบทบาทในเพศผู้", a:false,
-   why:"Oxytocin ช่วยการบีบตัวของท่ออสุจิและการหลั่ง seminal fluid"},
+  {q:"Progesterone มีบทบาทกระตุ้นพฤติกรรมการยอมผสม", a:false,
+   why:"Progesterone กดการเป็นสัด ส่วน estradiol กระตุ้นพฤติกรรมยอมผสม"},
 
-  {q:"Testosterone มีบทบาทใน secondary sex characteristics เช่นกล้ามเนื้อและเสียง", a:true,
-   why:"Testosterone ส่งผลต่อพัฒนาการลักษณะเพศชายทุติยภูมิ"},
+  {q:"Estradiol จาก dominant follicle ทำให้เกิด LH surge", a:true,
+   why:"ระดับ estradiol สูงคงที่กระตุ้น positive feedback → LH surge"},
 
-  {q:"BPH ในสุนัขเกิดจากอิทธิพลของ DHT ต่อ prostate gland", a:true,
-   why:"DHT (จาก testosterone โดย 5α-reductase) กระตุ้นการโตของ prostate"},
+  {q:"Standing heat เป็นสัญญาณที่ชัดที่สุดของ estrus ในโค", a:true,
+   why:"การยืนให้ตัวผู้ขึ้นขี่คือสัญญาณสำคัญสุดของการเป็นสัดในโค"},
 
-  {q:"Castration สามารถรักษา BPH ในสุนัขได้เพราะลด testosterone และ DHT", a:true,
-   why:"การทำหมันลดแหล่งสร้าง androgen ทำให้ต่อมลูกหมากฝ่อและอาการดีขึ้น"}
+  {q:"Prostaglandin F₂α ใช้ในทางสัตวแพทย์เพื่อกระตุ้นการตกไข่", a:false,
+   why:"PGF₂α ทำให้ luteolysis และเริ่มรอบใหม่ ไม่ได้กระตุ้น ovulation"}
 ];
 
 /***********************
