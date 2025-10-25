@@ -387,7 +387,98 @@ const MCQ = [
    a:1,
    why:"ฉุกเฉิน: Ca gluconate IV ช้า + เฝ้าระวังหัวใจ และแก้ปัจจัยร่วม (Mg, P, Vit D)"}
 ];   // เติมโจทย์ทีหลังได้
-const TF  = [];
+const TF  = [
+
+{q:"Calcitonin ทำหน้าที่ลดระดับ Ca²⁺ และ phosphate ในเลือด", a:true,
+   why:"Calcitonin ลด osteoclast activity และลดการดูดกลับ Ca²⁺/PO₄³⁻ ที่ไต"},
+
+  {q:"Calcitonin ถูกหลั่งจาก chief cells ของต่อมพาราไทรอยด์", a:false,
+   why:"Calcitonin หลั่งจาก parafollicular (C) cells ของต่อมไทรอยด์"},
+
+  {q:"PTH เพิ่มการดูดกลับ Ca²⁺ ที่ท่อไตส่วน proximal", a:false,
+   why:"PTH เพิ่มการดูดกลับ Ca ที่ distal convoluted tubule ส่วน proximal เน้นลด phosphate"},
+
+  {q:"PTH กระตุ้นเอนไซม์ 1α-hydroxylase ที่ไตเพื่อสร้าง calcitriol", a:true,
+   why:"PTH ↑1α-hydroxylase → 25(OH)D → 1,25(OH)₂D₃ (active form)"},
+
+  {q:"Calcitriol ลดการดูดซึม Ca²⁺ และ phosphate ในลำไส้", a:false,
+   why:"Calcitriol เพิ่มการดูดซึม Ca²⁺ และ PO₄³⁻ ผ่าน TRPV6, calbindin"},
+
+  {q:"Vitamin D มีฤทธิ์ยับยั้งการหลั่ง PTH เมื่อระดับ Ca²⁺ สูง", a:true,
+   why:"Calcitriol feedback ยับยั้ง PTH gene expression และ secretion"},
+
+  {q:"PTH ทำให้ระดับ phosphate ในเลือดเพิ่มขึ้น", a:false,
+   why:"PTH เพิ่ม phosphaturia → phosphate ในเลือดลด"},
+
+  {q:"Calcitonin มีฤทธิ์ลด Ca ได้ชั่วคราวและออกฤทธิ์สั้น", a:true,
+   why:"มี half-life สั้น ใช้ลด Ca ใน hypercalcemia เฉียบพลัน"},
+
+  {q:"PTHrP สามารถจับ receptor เดียวกับ PTH และเลียนแบบฤทธิ์บางส่วนได้", a:true,
+   why:"มีกรดอะมิโนต้นเหมือน PTH → จับ PTH1R ได้"},
+
+  {q:"การขาด Vitamin D ทำให้เกิดภาวะ Rickets และ Osteomalacia", a:true,
+   why:"ขาด Vit D → mineralization ของกระดูกผิดปกติ"},
+
+  {q:"Calcitonin ทำหน้าที่ยับยั้ง osteoblast โดยตรง", a:false,
+   why:"Calcitonin ยับยั้ง osteoclast activity ไม่ได้กด osteoblast"},
+
+  {q:"PTH เพิ่มการดูดซึม Ca²⁺ ที่ลำไส้อย่างอิสระจาก Vitamin D", a:false,
+   why:"ผลที่ลำไส้เป็นอ้อมผ่านการสร้าง calcitriol"},
+
+  {q:"PTH กระตุ้น osteoclast โดยตรงผ่าน receptor ที่เซลล์นั้น", a:false,
+   why:"osteoclast ไม่มี PTH receptor; สัญญาณผ่าน osteoblast/osteocyte (RANKL)"},
+
+  {q:"Calcitriol จัดเป็น nuclear receptor agonist ที่กระตุ้นการแสดงออกยีนขนส่ง Ca", a:true,
+   why:"จับ VDR ใน nucleus → กระตุ้น TRPV6, calbindin"},
+
+  {q:"ภาวะ metabolic alkalosis ทำให้ระดับ iCa ลดลง", a:true,
+   why:"alkalosis ↑การจับ Ca กับ albumin → iCa ลด → tetany"},
+
+  {q:"ภาวะ hypomagnesemia ทำให้หลั่ง PTH เพิ่มขึ้น", a:false,
+   why:"Mg ต่ำมากทำให้ PTH ลดลงและเกิดภาวะดื้อต่อ PTH"},
+
+  {q:"ใน CKD ระยะท้าย ระดับ calcitriol ลดและ PTH เพิ่ม", a:true,
+   why:"ไตสร้าง 1,25(OH)₂D₃ ไม่ได้ → Ca ต่ำ → PTH↑ (secondary HPT)"},
+
+  {q:"ภาวะ Primary hyperparathyroidism มี Ca ต่ำและ phosphate สูง", a:false,
+   why:"Primary HPT → Ca↑ P↓ เพราะ PTH สูงจริง"},
+
+  {q:"ภาวะ Vitamin D intoxication ทำให้ Ca สูงและ P สูง", a:true,
+   why:"Vit D เกิน → ดูดซึม Ca/P มากขึ้น → ทั้งคู่สูง"},
+
+  {q:"PTH secretion เพิ่มขึ้นเมื่อระดับ Ca²⁺ ในเลือดสูง", a:false,
+   why:"PTH ถูกยับยั้งเมื่อ Ca สูง (negative feedback)"},
+
+  {q:"Calcitonin secretion เพิ่มขึ้นเมื่อระดับ Ca²⁺ ในเลือดสูง", a:true,
+   why:"Ca สูง → กระตุ้น C cells ให้หลั่ง calcitonin เพื่อลด Ca"},
+
+  {q:"Vitamin D สามารถสร้างจาก 7-dehydrocholesterol ที่ผิวหนังเมื่อได้รับ UVB", a:true,
+   why:"UVB (270–290 nm) → 7-dehydrocholesterol → previtamin D₃"},
+
+  {q:"ตับเป็นแหล่งแปลง 25-hydroxylation ของ Vitamin D", a:true,
+   why:"ตับมีเอนไซม์ 25-hydroxylase → 25(OH)D เก็บในเลือด"},
+
+  {q:"Calcitonin receptor เป็น nuclear receptor", a:false,
+   why:"Calcitonin receptor เป็น GPCR → cAMP pathway"},
+
+  {q:"ภาวะ milk fever ในโคเกิดจาก PTH ต่ำถาวร", a:false,
+   why:"PTH ยังหลั่งได้แต่ตอบสนองช้าในช่วง Ca demand สูง"},
+
+  {q:"Anionic salts ลดความเสี่ยง milk fever เพราะทำให้ metabolic acidosis", a:true,
+   why:"Acidosis เล็กน้อยเพิ่ม sensitivity ต่อ PTH และการระดม Ca"},
+
+  {q:"Medullary bone ในไก่ถูกควบคุมโดย estrogen เพื่อเก็บ Ca สำหรับเปลือกไข่", a:true,
+   why:"Estrogen กระตุ้น medullary bone เป็นแหล่งสำรอง Ca"},
+
+  {q:"Calcitonin มีบทบาทสำคัญในเด็กมากกว่าผู้ใหญ่", a:true,
+   why:"ในเด็ก bone turnover สูง → calcitonin มีบทบาทเด่นในการควบคุม Ca"},
+
+  {q:"PTH ถูกสลายที่ตับและไต มี half-life เพียงไม่กี่นาที", a:true,
+   why:"PTH MW ~9500, สลายเร็วในตับและไต, fragment มี half-life ยาวกว่า"},
+
+  {q:"ภาวะ granulomatous disease อาจทำให้ hypercalcemia เพราะสร้าง 1α-hydroxylase ที่ macrophage", a:true,
+   why:"macrophage ใน granuloma สร้าง 1α-hydroxylase → calcitriol↑ → Ca↑"}
+];
 
 /***********************
  * UI – Tabs
