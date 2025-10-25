@@ -87,14 +87,221 @@ function shuffle(arr){ const a=arr.slice(); for(let i=a.length-1;i>0;i--){const 
  * MCQ / TF DATA
  ***********************/
 const MCQ = [
-  {q:"ฮอร์โมนใด ‘ลด’ ระดับ Ca²⁺ ในเลือดโดยตรงมากที่สุด?",
-   choices:["Parathyroid hormone (PTH)","Calcitonin","Vitamin D (Calcitriol)","PTHrP","Aldosterone"],
+  {q:"GnRH หลั่งจาก hypothalamusแบบ pulsatile มีผลต่อ anterior pituitary อย่างไรจึงทำให้เกิดรอบสืบพันธุ์ปกติ",
+   choices:["กระตุ้น FSH/LH ต่อเนื่องตลอดเวลา","ยับยั้ง FSH/LH ผ่าน dopamine","กระตุ้น FSH/LH เมื่อมีรูปแบบเป็นจังหวะ (frequency/amplitude) เหมาะสม","ต้องหลั่งเฉพาะตอนกลางวัน","ต้องถูกเปลี่ยนเป็น GnRH-II ก่อน"],
+   a:2,
+   why:"GnRH แบบ pulsatile ที่มีความถี่และแอมพลิจูดเหมาะสมเป็นเงื่อนไขสำคัญในการคงการหลั่ง FSH/LH และรอบสืบพันธุ์ปกติ"},
+
+  {q:"ฮอร์โมนใดเป็นตัวกระตุ้น LH surge เพื่อให้เกิดการตกไข่ (ovulation) ในสัตว์เลี้ยงลูกด้วยนมส่วนใหญ่",
+   choices:["Progesterone จาก corpus luteum","Estradiol จาก dominant follicle ที่สูงและเกิด positive feedback","Inhibin จาก granulosa","Prolactin","Oxytocin"],
    a:1,
-   why:"Calcitonin จาก C cells ยับยั้ง osteoclast และลดการดูดกลับ Ca²⁺ ที่ไต/ลำไส้ → Ca²⁺ เลือดลดลง"}
+   why:"Estradiol สูงคงที่จาก dominant follicle พลิกเป็น positive feedback ต่อ hypothalamus/ant. pituitary → LH surge → ovulation"},
+
+  {q:"FSH มีผลเด่นที่เซลล์ใดในรังไข่ตามทฤษฎีสองเซลล์–สองฮอร์โมน",
+   choices:["Theca cell → ทำ estradiol โดยตรง","Granulosa cell → เปลี่ยน androgen จาก theca ให้เป็น estradiol (ผ่าน aromatase)","Theca cell → สร้าง progesterone สูงก่อน LH","Stroma cell → เปลี่ยน cholesterol เป็น estrogen","Oocyte → สร้าง LH receptor"],
+   a:1,
+   why:"LH กระตุ้น theca ให้สร้าง androgen; FSH กระตุ้น granulosa เพิ่ม aromatase เปลี่ยนเป็น estradiol"},
+
+  {q:"หลังการตกไข่ เซลล์ที่เปลี่ยนเป็น corpus luteum และฮอร์โมนเด่นคือ",
+   choices:["Granulosa & theca → Progesterone เด่น","เฉพาะ theca → Androgen เด่น","เฉพาะ granulosa → Estradiol เด่น","Stromal cell → Relaxin เด่น","Oocyte → Inhibin เด่น"],
+   a:0,
+   why:"Granulosa lutein และ theca lutein cells สร้าง progesterone สูงเพื่อเตรียมเยื่อบุโพรงมดลูก"},
+
+  {q:"สัญญาณย้อนกลับเชิงลบหลักในระยะ luteal ต่อ hypothalamus/ant. pituitary คือ",
+   choices:["Estradiol เพียงอย่างเดียว","Progesterone (พร้อม estradiol บางส่วน)","Inhibin เพียงอย่างเดียว","Oxytocin","Prolactin"],
+   a:1,
+   why:"Progesterone จาก CL ลดความถี่ pulse ของ GnRH/LH; estradiol/inhibin ช่วยลด FSH"},
+
+  {q:"ระยะ follicular ของรอบสืบพันธุ์มีลักษณะเด่นข้อใด",
+   choices:["Progesterone สูง, LH ต่ำ","Estradiol เพิ่มขึ้น, FSH สนับสนุนการคัดเลือก dominant follicle","Corpus luteum ทำงานเต็มที่","Endometrium secretory เด่น","Basal body temperature สูงขึ้นชัด"],
+   a:1,
+   why:"ช่วง follicular estradiol สูง, FSH ช่วยคัดเลือก dominant follicle และเตรียม LH surge"},
+
+  {q:"ตัวเลือกใดอธิบาย ‘สองเซลล์–สองกอนาโดโทรปิน’ ถูกต้อง",
+   choices:["LH กระตุ้น granulosa สร้าง androgen; FSH กระตุ้น theca สร้าง estrogen","FSH กระตุ้น granulosa aromatase; LH กระตุ้น theca สร้าง androgen substrate","LH และ FSH ทั้งคู่กระตุ้น granulosa ให้สร้าง testosterone","FSH กระตุ้น theca ให้สร้าง progesterone เด่น","LH เท่านั้นเพียงพอให้ granulosa ทำ estrogen"],
+   a:1,
+   why:"LH→theca ทำ androgen; FSH→granulosa เพิ่ม aromatase สร้าง estradiol"},
+
+  {q:"ฮอร์โมนใดลด FSH เด่นในปลายระยะ follicular ทำให้เหลือ dominant follicle",
+   choices:["Inhibin จาก granulosa","Activin จาก theca","Progesterone จาก CL","Oxytocin จาก hypothalamus","Prolactin จาก pituitary"],
+   a:0,
+   why:"Granulosa ของ dominant follicle สร้าง inhibin ลด FSH → ยับยั้ง follicle รอง"},
+
+  {q:"ในเพศผู้ FSH และ LH ออกฤทธิ์หลักที่ใดตามลำดับ",
+   choices:["FSH→Leydig, LH→Sertoli","FSH→Sertoli, LH→Leydig","ทั้งคู่→Leydig","ทั้งคู่→Sertoli","FSH→Spermatogonia, LH→Epididymis"],
+   a:1,
+   why:"FSH กระตุ้น Sertoli สนับสนุน spermatogenesis; LH กระตุ้น Leydig สร้าง testosterone"},
+
+  {q:"กลไก feedback หลักของ testosterone ในเพศผู้คือ",
+   choices:["Positive feedback ต่อ GnRH","Negative feedback ต่อ GnRH/LH ที่ hypothalamus/ant. pituitary","Positive feedback ต่อ FSH","Negative feedback เฉพาะ FSH ผ่าน inhibin","ไม่มี feedback"],
+   a:1,
+   why:"Testosterone กด GnRH/LH (negative feedback); inhibin จาก Sertoli กด FSH"},
+
+  {q:"บทบาทสำคัญของ Sertoli cell ที่ ‘ถูกต้อง’ คือ",
+   choices:["ผลิต GnRH","สร้าง inhibin และ ABP, กั้น blood–testis barrier, โภชนาการแก่ germ cell","สร้าง LH","กระตุ้น epididymis หลั่ง fructose","สร้าง seminal plasma ส่วนใหญ่"],
+   a:1,
+   why:"Sertoli: ABP, inhibin, barrier, โภชนาการและควบคุมไมโครเอนไวรอนเมนต์ในท่อสร้างอสุจิ"},
+
+  {q:"Spermatogenesis ต้องการอุณหภูมิเทียบกับแกนกายภาพอย่างไร",
+   choices:["สูงกว่าแกน 2–3°C","เท่ากับแกน","ต่ำกว่าแกน ~2–3°C (scrotal thermoregulation)","ไม่ขึ้นกับอุณหภูมิ","ต้อง > 40°C"],
+   a:2,
+   why:"การสร้างอสุจิต้องต่ำกว่าแกน ~2–3°C; ระบบหลอดเลือด pampiniform plexus ช่วยระบายความร้อน"},
+
+  {q:"Epididymis มีหน้าที่หลักข้อใด",
+   choices:["สร้าง testosterone","หลั่ง FSH","เก็บและทำให้อสุจิสุก เคลื่อนที่ได้ และเก็บสำรองชั่วคราว","ย่อยสลายอสุจิทั้งหมด","เป็นแหล่งสร้าง semen volume ส่วนใหญ่"],
+   a:2,
+   why:"Epididymis ช่วย maturation, motility และ storage ก่อนส่งสู่ vas deferens"},
+
+  {q:"ฮอร์โมนหลักที่คงสภาพเยื่อบุโพรงมดลูกให้พร้อมรับตัวอ่อน (หลังตกไข่) คือ",
+   choices:["Estradiol","Progesterone","FSH","LH","Inhibin"],
+   a:1,
+   why:"Progesterone จาก CL เปลี่ยน endometrium เป็น secretory และกดการหดรัดตัวมดลูก"},
+
+  {q:"ก่อนคลอด (parturition) ปัจจัยฮอร์โมนที่เปลี่ยนทิศเพื่อเริ่มการบีบตัวของมดลูกคือ",
+   choices:["Progesterone ต่อมดลูกเพิ่มขึ้นต่อเนื่อง","สัดส่วน Estrogen/Progesterone สูงขึ้น, PGF₂α และ Oxytocin เพิ่ม","Prolactin ลดลงอย่างมาก","LH surge","FSH surge"],
+   a:1,
+   why:"ปลายครรภ์ estrogen เด่นกว่าจึงเพิ่ม gap junction/oxytocin receptor; PGF₂α & oxytocin กระตุ้นการหดตัว"},
+
+  {q:"Ferguson reflex อธิบายถูกต้องที่สุด",
+   choices:["ดูดนม → หลั่ง prolactin","การยืดปากมดลูก/ช่องคลอด → กระตุ้น oxytocin จาก posterior pituitary → มดลูกหดตัวมากขึ้น","prolactin ทำให้มดลูกหดตัว","estrogen ลดการหดตัว","FSH เพิ่มการหดตัว"],
+   a:1,
+   why:"แรงกดที่ปากมดลูกส่ง afferent → hypothalamus → posterior pituitary หลั่ง oxytocin เพิ่ม (positive feedback)"},
+
+  {q:"Lactation reflex ที่เกี่ยวกับ ejection (let-down) milk เกิดจาก",
+   choices:["Prolactin จาก ant. pituitary","Oxytocin จาก post. pituitary ทำให้ myoepithelial cell หดตัว","FSH","LH","Progesterone"],
+   a:1,
+   why:"Prolactin กระตุ้นสร้างน้ำนม ส่วน oxytocin ทำให้ขับน้ำนมโดยหด myoepithelial cells"},
+
+  {q:"Prolactin ควบคุมโดย hypothalamusหลักๆผ่าน",
+   choices:["TRH ยับยั้ง","Dopamine (PIH) ยับยั้งโทนิก, TRH กระตุ้นได้","GnRH ยับยั้ง","Oxytocin ยับยั้ง","Somatostatin กระตุ้น"],
+   a:1,
+   why:"Dopamine เป็นโทนิกยับยั้ง PRL; TRH/estrogen กระตุ้น PRL ได้ในบางภาวะ"},
+
+  {q:"เหตุใด CL จึงเสื่อมลงในปลายรอบหากไม่ตั้งท้อง (ชนิดมีมดลูก)",
+   choices:["เพราะ FSH สูง","เพราะขาด cholesterol","เพราะ PGF₂α จากมดลูกส่งทางหลอดเลือดไป luteolysis","เพราะ prolactin ลดลง","เพราะ oxytocin เพิ่ม"],
+   a:2,
+   why:"มดลูกสร้าง PGF₂α ผ่าน countercurrent transfer ไปยังรังไข่ก่อ luteolysis (ชนิด species-specific)"},
+
+  {q:"ช่วงใดของรอบที่ basal body temperature มักสูงขึ้นเล็กน้อย",
+   choices:["ก่อนตกไข่ 3–5 วัน","หลังตกไข่ (ผลของ progesterone)","ปลาย follicular","ระยะมีประจำเดือน","ตลอดรอบไม่เปลี่ยน"],
+   a:1,
+   why:"Progesterone มีฤทธิ์ thermogenic ทำให้ BBT สูงขึ้นหลังตกไข่เล็กน้อย"},
+
+  {q:"Inhibin ในเพศผู้สร้างจาก",
+   choices:["Leydig","Sertoli","Spermatid","Prostate","Seminal vesicle"],
+   a:1,
+   why:"Sertoli cell สร้าง inhibin ลด FSH (negative feedback)"},
+
+  {q:"Androgen-binding protein (ABP) มีบทบาทที่",
+   choices:["จับ androgen ใน plasma ลดที่ท่อสร้างอสุจิ","เพิ่มความเข้มข้นของ testosterone ภายใน seminiferous tubule/epididymis","ยับยั้ง LH ที่ pituitary","กำจัด estrogen","กระตุ้น GnRH"],
+   a:1,
+   why:"ABP จาก Sertoli ทำให้ความเข้มข้น androgen ในท่อสูงพอสำหรับ spermatogenesis"},
+
+  {q:"การสร้าง estrogen ใน granulosa อาศัยเอนไซม์ใด",
+   choices:["5α-reductase","Aromatase (CYP19A1)","11β-hydroxylase","17α-hydroxylase","P450scc เพียงอย่างเดียว"],
+   a:1,
+   why:"Aromatase เปลี่ยน androgen จาก theca เป็น estrogen ใน granulosa"},
+
+  {q:"GnRH ถ้าให้แบบ continuous infusion ผลระยะยาวมักเป็น",
+   choices:["เพิ่ม FSH/LH มากขึ้นเรื่อยๆ","กด FSH/LH จาก receptor downregulation","ไม่เปลี่ยนแปลง","เพิ่มเฉพาะ FSH","เพิ่มเฉพาะ LH"],
+   a:1,
+   why:"GnRH ต่อเนื่องทำให้ pituitary desensitization/downregulation → ลด FSH/LH (ใช้ทางคลินิกเพื่อกดแกน)"},
+
+  {q:"ในช่วง preovulatory follicle การเกิด LH receptor ใหม่บน granulosa มีความสำคัญเพราะ",
+   choices:["ทำให้ granulosa ตอบสนองต่อ FSH มากขึ้น","ทำให้ granulosa ตอบสนองต่อ LH เพื่อ luteinization และ ovulation","ลดการสร้าง estradiol","ยับยั้งการสร้าง progesterone","ยับยั้งการสร้าง inhibin"],
+   a:1,
+   why:"การแสดง LH receptor บน granulosa ช่วงปลายช่วยตอบสนองต่อ LH surge สู่ ovulation/luteinization"},
+
+  {q:"เหตุใด estradiol ก่อนตกไข่จึงกลายเป็น positive feedback",
+   choices:["เพราะ progesterone สูงมาก","เพราะระดับ estradiol สูงต่อเนื่องทำให้เซ็นเตอร์รับรู้เปลี่ยนโหมดกระตุ้น GnRH/LH","เพราะ FSH ศูนย์","เพราะ oxytocin เพิ่ม","เพราะ prolactin ลด"],
+   a:1,
+   why:"Estradiol สูงคงที่พอเวลาที่กำหนดเปลี่ยน set-point → กระตุ้น GnRH neuron/ant. pituitary เกิด LH surge"},
+
+  {q:"ปัจจัยสำคัญต่อการหดตัวของมดลูกระหว่างคลอด ‘ยกเว้น’",
+   choices:["Oxytocin receptor density เพิ่มขึ้นโดย estrogen","Gap junction ของ myometrium เพิ่ม","Progesterone สูงเด่นคงที่ตลอดจนกดการหดตัว","Prostaglandin เพิ่ม","แรงกด fetal head กระตุ้น reflex"],
+   a:2,
+   why:"ปลายครรภ์สัดส่วน estrogen/PG เพิ่มเพื่อเอื้อต่อการหดตัว; progesterone dominance จะยับยั้งการหดตัว"},
+
+  {q:"Seminal vesicle มีบทบาทเด่นข้อใด",
+   choices:["สร้าง testosterone","สร้างส่วนใหญ่ของ semen volume มี fructose และสารทำให้เป็นด่าง","เก็บอสุจิระยะยาว","กระตุ้น capacitation โดยตรง","ย่อยเมือกปากมดลูก"],
+   a:1,
+   why:"Seminal vesicle ให้ปริมาตรส่วนใหญ่ของน้ำเลี้ยงอสุจิและแหล่งพลังงาน (fructose)"},
+
+  {q:"Capacitation ของอสุจิเกิดเมื่อ",
+   choices:["ใน epididymis","หลังหลั่งออกและอยู่ในระบบสืบพันธุ์เพศเมีย/ของเหลวในมดลูก-ท่อนำไข่","ใน testis","ใน vas deferens","ต้องอาศัย LH"],
+   a:1,
+   why:"Capacitation เป็นการเปลี่ยนแปลงที่ female tract ช่วยให้อสุจิมีความสามารถปฏิสนธิ"},
+
+  {q:"Acrosome reaction จำเป็นเพื่อ",
+   choices:["ทะลุ zona pellucida โดยเอนไซม์ acrosomal","จับกับ LH receptor","เพิ่ม motility ใน epididymis","การฝังตัวของตัวอ่อน","การสร้าง progesterone"],
+   a:0,
+   why:"Acrosome reaction ปลดปล่อยเอนไซม์ช่วยให้สเปิร์มผ่าน zona pellucida เข้าถึง oocyte membrane"},
+
+  {q:"หลังการปฏิสนธิ กลไกที่ป้องกัน polyspermy คือ",
+   choices:["LH surge ซ้ำ","Cortical reaction เปลี่ยนคุณสมบัติ zona pellucida","FSH พุ่งสูง","Progesterone ลดลงทันที","Oxytocin กระตุ้น"],
+   a:1,
+   why:"Cortical granules หลั่งเปลี่ยน zona (zona reaction) ทำให้สเปิร์มตัวอื่นผ่านไม่ได้"}
 ];   // เติมโจทย์ทีหลังได้
 const TF  = [
-  {q:"Calcitonin ทำหน้าที่ลดระดับ Ca²⁺ และ phosphate ในเลือด", a:true,
-   why:"Calcitonin ลด osteoclast activity และลดการดูดกลับ Ca²⁺/PO₄³⁻ ที่ไต"}
+  {q:"GnRH หลั่งจาก hypothalamusแบบต่อเนื่องจะกระตุ้น LH และ FSH ตลอดเวลา", a:false,
+   why:"การหลั่ง GnRH ต้องเป็นแบบ pulsatile จึงจะกระตุ้น LH/FSH ได้ปกติ หากต่อเนื่องจะกด receptor ที่ pituitary"},
+
+  {q:"Estradiol สูงต่อเนื่องก่อนตกไข่กระตุ้น positive feedback ทำให้เกิด LH surge", a:true,
+   why:"ระดับ estradiol สูงต่อเนื่องกระตุ้น GnRH/LH surge เพื่อให้ ovulation เกิดขึ้น"},
+
+  {q:"LH กระตุ้น theca cell ให้สร้าง androgen ซึ่ง granulosa cell จะเปลี่ยนเป็น estrogen ภายใต้ FSH", a:true,
+   why:"ทฤษฎีสองเซลล์–สองฮอร์โมน: LH→theca (androgen), FSH→granulosa (aromatase→estradiol)"},
+
+  {q:"Progesterone จาก corpus luteum มีผลยับยั้ง GnRH และ LH ผ่าน negative feedback", a:true,
+   why:"Progesterone ลดความถี่ของ GnRH pulse → กด LH secretion"},
+
+  {q:"FSH ในเพศผู้กระตุ้น Leydig cell โดยตรงให้สร้าง testosterone", a:false,
+   why:"LH กระตุ้น Leydig; FSH กระตุ้น Sertoli เพื่อสนับสนุน spermatogenesis"},
+
+  {q:"Sertoli cell สร้าง inhibin เพื่อลด FSH จาก anterior pituitary", a:true,
+   why:"Inhibin เป็น negative feedback ต่อ FSH"},
+
+  {q:"Testosterone feedback เชิงลบต่อ hypothalamusและanterior pituitary", a:true,
+   why:"Testosterone กด GnRH และ LH"},
+
+  {q:"Spermatogenesis ต้องอุณหภูมิสูงกว่าแกนร่างกาย", a:false,
+   why:"ต้องต่ำกว่าแกน ~2–3°C เพื่อให้สเปิร์มสร้างได้ปกติ"},
+
+  {q:"Epididymis มีหน้าที่เก็บและทำให้อสุจิสุกและมี motility", a:true,
+   why:"สเปิร์มที่ออกจาก testis ยังไม่ mature ต้องผ่าน epididymis เพื่อให้สุกและเคลื่อนไหวได้"},
+
+  {q:"Capacitation ของอสุจิเกิดขึ้นในท่อนำอสุจิ (vas deferens)", a:false,
+   why:"Capacitation เกิดใน female tract เช่น uterus, oviduct"},
+
+  {q:"Oxytocin จาก posterior pituitary มีบทบาทในการขับน้ำนม (milk let-down)", a:true,
+   why:"Oxytocin ทำให้ myoepithelial cell รอบ alveoli หดตัว ขับน้ำนมออก"},
+
+  {q:"Prolactin ควบคุมโดย dopamine จาก hypothalamusที่มีฤทธิ์ยับยั้ง", a:true,
+   why:"Dopamine คือ prolactin inhibitory hormone (PIH)"},
+
+  {q:"LH surge เกิดขึ้นในช่วง luteal phase ของรอบสืบพันธุ์", a:false,
+   why:"LH surge เกิดช่วงปลาย follicular phase ก่อนตกไข่"},
+
+  {q:"PGF₂α จากมดลูกมีบทบาททำให้ corpus luteum เสื่อมในสัตว์หลายชนิด", a:true,
+   why:"PGF₂α จาก endometrium ส่งทางหลอดเลือดไป luteolysis ที่รังไข่"},
+
+  {q:"Estrogen มีบทบาทเพิ่มความไวของมดลูกต่อ oxytocin ในช่วงก่อนคลอด", a:true,
+   why:"Estrogen เพิ่มจำนวน receptor ของ oxytocin บนมดลูก → เพิ่มการหดตัว"},
+
+  {q:"Progesterone มีผลกระตุ้นการหดตัวของมดลูกในระยะตั้งครรภ์", a:false,
+   why:"Progesterone ยับยั้งการหดตัวและคงการตั้งครรภ์"},
+
+  {q:"Ferguson reflex คือการหลั่ง prolactin เมื่อมีแรงกดที่หัวนม", a:false,
+   why:"Ferguson reflex: การยืดปากมดลูก → กระตุ้นหลั่ง oxytocin ไม่ใช่ prolactin"},
+
+  {q:"Seminal vesicle เป็นแหล่งสร้างสารอาหารหลักของ semen เช่น fructose", a:true,
+   why:"Seminal vesicle สร้างส่วนใหญ่ของ seminal plasma มี fructose เป็นพลังงานสเปิร์ม"},
+
+  {q:"Inhibin ทำหน้าที่เพิ่มการหลั่ง FSH จาก pituitary", a:false,
+   why:"Inhibin ยับยั้ง FSH (negative feedback)"},
+
+  {q:"Granulosa cell ใน dominant follicle แสดง LH receptor ก่อนตกไข่เพื่อเตรียม luteinization", a:true,
+   why:"Granulosa cell พัฒนา LH receptor ภายใต้ estradiol/FSH เพื่อให้ตอบสนองต่อ LH surge ได้"}
 ];
 
 /***********************
