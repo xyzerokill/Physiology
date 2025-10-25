@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Physiology of male reproductive system – ชุดแบบทดสอบ (TH)</title>
+<style>
+  :root{--bg:#0f172a;--card:#111827;--ink:#e5e7eb;--muted:#94a3b8;--accent:#22d3ee;--good:#22c55e;--bad:#ef4444;--warn:#f59e0b}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Helvetica,Arial,sans-serif;background:linear-gradient(180deg,#0b1220,#0e1526);color:var(--ink)}
+  header{position:sticky;top:0;background:#0b1220cc;backdrop-filter:blur(6px);border-bottom:1px solid #1f2937;z-index:10}
+  .wrap{max-width:1100px;margin:0 auto;padding:18px}
+  h1{font-size:clamp(20px,2.8vw,34px);margin:8px 0 2px}
+  .tabs{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+  .tab{padding:10px 14px;border:1px solid #1f2937;border-radius:10px;background:#0b1324;color:#cbd5e1;cursor:pointer}
+  .tab.active{border-color:#0ea5e9;background:#0b2436;box-shadow:0 0 0 2px #0ea5e933 inset;color:#e2e8f0}
+  .card{background:var(--card);border:1px solid #1f2937;border-radius:14px;padding:18px;margin:16px 0;box-shadow:0 10px 30px #0004}
+  .grid{display:grid;gap:12px}
+  .grid.cols-2{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+  .muted{color:var(--muted)}
+  select,button,input[type="radio"]{accent-color:#06b6d4}
+  select{width:100%;padding:8px 10px;border-radius:10px;border:1px solid #334155;background:#0b1320;color:#e2e8f0}
+  button{background:#0ea5e9;border:none;padding:10px 14px;border-radius:10px;color:#001018;font-weight:700;cursor:pointer}
+  button.secondary{background:#0b1728;color:#e2e8f0;border:1px solid #1f2937}
+  .pill{display:inline-block;padding:4px 10px;border-radius:999px;border:1px solid #1f2937;background:#0b1320;color:#a5b4fc;font-size:12px}
+  .row{display:flex;align-items:center;gap:8px}
+  .k{font-weight:700;color:#67e8f9}
+  .ok{color:var(--good)}
+  .ng{color:var(--bad)}
+  .warn{color:var(--warn)}
+  .qcard{border:1px dashed #334155;padding:14px;border-radius:12px}
+  .choices{display:grid;gap:8px;margin-top:10px}
+  .choice{padding:10px;border:1px solid #293241;border-radius:10px;cursor:pointer;background:#0a1120}
+  .choice.correct{border-color:#14532d;background:#052014}
+  .choice.wrong{border-color:#7f1d1d;background:#1a0b0b}
+  .hide{display:none}
+  .tag{font-size:11px;opacity:.9;color:#a5b4fc;margin-left:6px}
+  .answer{border-left:3px solid #334155;padding-left:10px;margin-top:8px;color:#cbd5e1}
+  .inline-kbd{display:inline-block;border:1px solid #334155;border-bottom-width:3px;padding:2px 6px;border-radius:6px;background:#0b1320;color:#e5e7eb;font:600 12px/1 system-ui}
+  .siteGrid{display:grid;grid-template-columns:1.6fr 1fr;gap:10px;align-items:center}
+  .siteGrid h4{margin:0}
+  .scorebox{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+  .badge{padding:6px 10px;border-radius:10px;background:#062334;border:1px solid #0ea5e9;color:#7dd3fc}
+  .mini{font-size:12px}
+  footer{opacity:.7;text-align:center;padding:26px}
+  details{background:#0b1320;border:1px solid #1f2937;border-radius:10px;padding:8px}
+  summary{cursor:pointer;color:#7dd3fc}
+</style>
+</head>
+<body>
+<header>
+  <!-- ปุ่มกลับหน้าแรก (วางไว้ใต้ <header> หรือบนสุดของ <main>) -->
+<div style="margin:10px 0;">
+  <a href="index.html" 
+     style="display:inline-block;padding:8px 14px;background:#0b2436;
+            border:1px solid #0ea5e9;border-radius:10px;
+            color:#7dd3fc;text-decoration:none;font-weight:600;">
+    🏠กลับไปหน้าแรก
+  </a>
+</div>
+
+  <div class="wrap">
+    <h1>Physiology of male reproductive system</h1>
+    <div class="muted">โหมด: · <span class="pill">MCQ</span> · <span class="pill">True/False</span></div>
+    <div class="tabs" id="tabs"></div>
+  </div>
+</header>
+<main class="wrap">
+  <section id="mode-mcq" class="card hide"></section>
+  <section id="mode-tf" class="card hide"></section>
+  <section class="card">
+    <details>
+      <summary>📝 วิธีใช้</summary>
+      <ul>
+        <li><b>MCQ</b>: ตอบทีละข้อ สุ่มลำดับทุกครั้ง ต้องคลิกคำตอบก่อน จึงเห็นเฉลยและไปข้อถัดไป</li>
+        <li><b>True/False</b>: แนวเดียวกับ MCQ</li>
+        <li>คง <i>technical terms</i> ภาษาอังกฤษ</li>
+      </ul>
+    </details>
+  </section>
+</main>
+<footer class="muted">© 2025 – Vet Physiology Drill • Calcium regulation · Reproduction · Shock
+<script>
+function shuffle(arr){ const a=arr.slice(); for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]} return a; }
+
+/***********************
+ * MCQ / TF DATA
+ ***********************/
+const MCQ = [
+  {q:"อวัยวะใดเป็นแหล่งหลักของการสร้างและหลั่ง testosterone ในเพศผู้",
+   choices:["Sertoli cell","Leydig cell","Epididymis","Prostate gland","Seminal vesicle"],
+   a:1,
+   why:"Leydig cell ระหว่างท่อสร้างอสุจิสร้าง testosterone ภายใต้การกระตุ้นของ LH"},
+
+  {q:"หน้าที่หลักของ Sertoli cell คืออะไร",
+   choices:["สร้าง testosterone","สร้าง inhibin และ androgen-binding protein (ABP) สนับสนุน spermatogenesis","เก็บอสุจิ","สร้าง seminal plasma","ทำลายอสุจิที่แก่"],
+   a:1,
+   why:"Sertoli cell สนับสนุนการพัฒนา sperm, สร้าง ABP/inhibin และเป็นส่วนของ blood-testis barrier"},
+
+  {q:"ฮอร์โมนใดกระตุ้น Sertoli cell ให้สนับสนุนการสร้างอสุจิ",
+   choices:["LH","FSH","GnRH","Testosterone","Prolactin"],
+   a:1,
+   why:"FSH เป็น gonadotropin หลักที่กระตุ้น Sertoli cell → สนับสนุน spermatogenesis"},
+
+  {q:"ฮอร์โมนใดกระตุ้น Leydig cell ให้สร้าง testosterone",
+   choices:["FSH","LH","Inhibin","Prolactin","Oxytocin"],
+   a:1,
+   why:"LH จาก anterior pituitary กระตุ้น Leydig cell ผลิต testosterone"},
+
+  {q:"Testosterone มีผล feedback ต่อระบบ hypothalamic–pituitary อย่างไร",
+   choices:["กระตุ้น GnRH","ยับยั้ง GnRH/LH (negative feedback)","เพิ่ม FSH","ไม่มีผล","เพิ่ม Prolactin"],
+   a:1,
+   why:"Testosterone กด GnRH ที่ hypothalamus และ LH ที่ pituitary"},
+
+  {q:"Inhibin จาก Sertoli cell มีหน้าที่ยับยั้งการหลั่งฮอร์โมนใด",
+   choices:["LH","FSH","GnRH","Testosterone","Oxytocin"],
+   a:1,
+   why:"Inhibin selective feedback ลดการหลั่ง FSH จาก anterior pituitary"},
+
+  {q:"ระยะต่าง ๆ ของ spermatogenesis เรียงลำดับถูกต้องคือ",
+   choices:["Spermatogonia → Spermatid → Primary spermatocyte → Secondary spermatocyte","Spermatogonia → Primary spermatocyte → Secondary spermatocyte → Spermatid → Spermatozoa","Primary spermatocyte → Spermatogonia → Spermatozoa","Secondary spermatocyte → Spermatogonia → Spermatid → Spermatozoa","Spermatid → Primary spermatocyte → Spermatozoa"],
+   a:1,
+   why:"เซลล์ต้นกำเนิด → Primary → Secondary → Spermatid → Spermatozoa"},
+
+  {q:"กระบวนการใดเปลี่ยน spermatid ให้เป็น spermatozoa ที่มีหัวและหาง",
+   choices:["Spermiation","Spermiogenesis","Capacitation","Acrosome reaction","Fertilization"],
+   a:1,
+   why:"Spermiogenesis คือการเปลี่ยน spermatid ให้มีรูปร่างสมบูรณ์เป็น spermatozoa"},
+
+  {q:"Epididymis มีหน้าที่หลักใด",
+   choices:["หลั่ง testosterone","ให้พลังงานแก่อสุจิ","ทำให้อสุจิ mature และเคลื่อนไหวได้ พร้อมเก็บสำรองชั่วคราว","กระตุ้น capacitation","สร้าง prostaglandin"],
+   a:2,
+   why:"Epididymis ช่วย maturation และ storage ของ sperm ก่อน ejaculation"},
+
+  {q:"Accessory sex gland ใดพบในสัตว์เพศผู้ทุกชนิด",
+   choices:["Seminal vesicle","Prostate gland","Bulbourethral gland","Ampulla","Cowper’s gland"],
+   a:1,
+   why:"Prostate gland พบในสัตว์เพศผู้ทุกชนิด แม้ขนาดแตกต่างกัน"},
+
+  {q:"Prostate gland มีหน้าที่สำคัญใดต่อ semen",
+   choices:["สร้างส่วนที่ให้พลังงาน (fructose)","สร้างของเหลว buffer และเอนไซม์ที่ช่วยการเคลื่อนไหวของ sperm","หลั่ง testosterone","ผลิต progesterone","เก็บ spermatozoa"],
+   a:1,
+   why:"ของเหลวจาก prostate ช่วยปรับ pH และมีเอนไซม์เพิ่ม motility ของ sperm"},
+
+  {q:"Seminal vesicle มีหน้าที่หลักคือ",
+   choices:["ผลิต spermatozoa","สร้าง seminal plasma ส่วนใหญ่และให้พลังงาน (fructose)","กระตุ้น acrosome reaction","ผลิต LH","สร้าง progesterone"],
+   a:1,
+   why:"Seminal vesicle สร้างของเหลวส่วนใหญ่ของ semen และ fructose เป็นพลังงานให้ sperm"},
+
+  {q:"Bulbourethral gland มีหน้าที่เด่นคือ",
+   choices:["ผลิต prostaglandin","ผลิตของเหลวหล่อลื่นและล้างท่อปัสสาวะก่อน ejaculation","ผลิต sperm","สร้าง testosterone","สร้าง seminal vesicle secretion"],
+   a:1,
+   why:"Bulbourethral gland หลั่งมูกหล่อลื่นและล้าง urethra ก่อนหลั่งน้ำเชื้อ"},
+
+  {q:"การ descent ของ testis ระหว่างพัฒนาตัวอ่อนอาศัยโครงสร้างใดช่วยดึงลงถุงอัณฑะ",
+   choices:["Cremaster muscle","Tunica albuginea","Gubernaculum","Vas deferens","Scrotal septum"],
+   a:2,
+   why:"Gubernaculum เป็นเส้นใยเชื่อมดึง testis จากช่องท้องลง scrotum"},
+
+  {q:"Cryptorchidism หมายถึงภาวะใด",
+   choices:["ขาด testosterone","testis ไม่ลงถุงอัณฑะ","ไม่มี epididymis","ไม่มี prostate gland","ไม่มี seminal vesicle"],
+   a:1,
+   why:"Cryptorchidism คือภาวะอัณฑะค้างในช่องท้องหรือ inguinal canal"},
+
+  {q:"ผลของ cryptorchidism ที่สำคัญต่อ fertility คือ",
+   choices:["มี sperm ปกติแต่ไม่มี testosterone","มี testosterone ปกติแต่ spermatogenesis เสีย","ไม่มีทั้ง sperm และ testosterone","สร้าง sperm มากเกิน","inhibin สูงผิดปกติ"],
+   a:1,
+   why:"Leydig cell ยังทำงานได้ → testosterone ปกติ แต่ spermatogenesis เสียเพราะอุณหภูมิสูง"},
+
+  {q:"การรักษา cryptorchidism บางกรณีทำได้โดยการกระตุ้นด้วยฮอร์โมนใด",
+   choices:["hCG หรือ GnRH","FSH","Inhibin","Estrogen","Oxytocin"],
+   a:0,
+   why:"hCG หรือ GnRH กระตุ้น Leydig cell ให้ผลิต testosterone → ช่วยให้ testis เคลื่อนลง"},
+
+  {q:"ส่วนประกอบใดของ sperm ทำหน้าที่ผลิตพลังงานสำหรับการเคลื่อนที่",
+   choices:["Head","Acrosome","Midpiece","Tail","Axoneme"],
+   a:2,
+   why:"Midpiece มี mitochondria จำนวนมากผลิต ATP สำหรับการเคลื่อนไหว"},
+
+  {q:"Acrosome บนหัวอสุจิมีเอนไซม์หลักเพื่อ",
+   choices:["ละลาย zona pellucida ของไข่","ผลิต ATP","เคลื่อนไหว","สังเคราะห์ DNA","ยึดผนังท่ออสุจิ"],
+   a:0,
+   why:"Acrosome มีเอนไซม์ hyaluronidase และ acrosin ช่วยให้ sperm ทะลุ zona pellucida"},
+
+  {q:"ฮอร์โมนที่ควบคุม sexual behavior (libido) ของเพศผู้โดยตรงคือ",
+   choices:["FSH","Progesterone","Oxytocin","Testosterone","Prolactin"],
+   a:3,
+   why:"Testosterone ควบคุมพฤติกรรมทางเพศและความต้องการทางเพศ"},
+
+  {q:"Penile erection ถูกควบคุมโดยระบบประสาทใด",
+   choices:["Sympathetic","Parasympathetic ผ่าน pelvic nerve","Somatic motor","CNS motor cortex","Spinal inhibitory reflex"],
+   a:1,
+   why:"Parasympathetic (pelvic nerve) → NO-mediated vasodilation ของ corpus cavernosum → erection"},
+
+  {q:"การหลั่ง (emission) อยู่ภายใต้การควบคุมของระบบประสาทใด",
+   choices:["Parasympathetic","Sympathetic","Somatic","Central inhibitory","Vagus nerve"],
+   a:1,
+   why:"Emission ควบคุมโดย sympathetic → บีบตัว vas deferens, seminal vesicle, prostate"},
+
+  {q:"การหลั่งน้ำเชื้อออก (ejaculation) เป็นรีเฟล็กซ์ผ่านเส้นประสาทใด",
+   choices:["Sympathetic","Parasympathetic","Pudendal nerve (somatic reflex)","Cranial nerve X","Glossopharyngeal nerve"],
+   a:2,
+   why:"Ejaculation reflex ผ่าน pudendal nerve → หด ischiocavernosus & bulbospongiosus"},
+
+  {q:"Oxytocin ในเพศผู้มีบทบาทใด",
+   choices:["ยับยั้ง ejaculation","ช่วยการหลั่ง semen โดยกระตุ้นการบีบตัวของท่อและ accessory gland","เพิ่มการสร้าง testosterone","ลดการหดตัวของกล้ามเนื้อ smooth muscle","เพิ่ม FSH"],
+   a:1,
+   why:"Oxytocin ช่วยบีบตัวท่ออสุจิและต่อม accessory gland ขณะหลั่ง"},
+
+  {q:"ระยะเวลาที่ sperm ใช้ maturation ใน epididymis โดยเฉลี่ยประมาณ",
+   choices:["1–2 วัน","5–10 วัน","10–14 วัน","30 วัน","60 วัน"],
+   a:2,
+   why:"sperm ต้องผ่าน epididymis ราว 10–14 วันเพื่อ maturation ก่อน ejaculation"},
+
+  {q:"สภาพแวดล้อมเหมาะสมของ sperm ใน female tract คือ",
+   choices:["กรดมาก","เป็นกลางถึงด่างเล็กน้อย","เป็นกรดแรง","มีอุณหภูมิต่ำ","มี estrogen ต่ำ"],
+   a:1,
+   why:"Sperm เคลื่อนไหวดีสุดในสภาพ pH เป็นกลาง–ด่างเล็กน้อย"},
+
+  {q:"ในสุนัข ส่วนของ ejaculate ที่มี sperm เข้มข้นสุดคือ",
+   choices:["Pre-sperm fraction","Sperm-rich fraction","Prostatic fraction","ทั้งหมดเท่ากัน","ไม่มีการแบ่งชั้น"],
+   a:1,
+   why:"ส่วน sperm-rich fraction มี sperm มากสุด ขณะที่ prostatic fraction เป็นของเหลวเจือจาง"},
+
+  {q:"ลักษณะของ semen ปกติในสุนัขคือ",
+   choices:["ใสไม่มีสี","ขุ่นหรือขาวขุ่น, pH ~6.2–7.2, motility >75%","แดงเข้ม","เหลืองเข้ม","มีกลิ่นแรงและ pH >8.5"],
+   a:1,
+   why:"semen ปกติควรขาวขุ่น, motility >75%, pH ใกล้เป็นกลาง"},
+
+  {q:"สาเหตุสำคัญของภาวะ oligospermia ในสัตว์เพศผู้คือ",
+   choices:["Cryptorchidism, ความร้อน, การติดเชื้อ, ความเครียด","ขาด testosterone จาก CL","Progesterone สูง","Estrogen ต่ำ","Oxytocin มากเกิน"],
+   a:0,
+   why:"Cryptorchidism, heat stress, infection, toxin → spermatogenesis ลด → oligospermia"},
+
+  {q:"Benign prostatic hyperplasia (BPH) ในสุนัขสูงอายุเกิดจากกลไกใด",
+   choices:["ขาด testosterone","LH สูงเกิน","การเปลี่ยน testosterone → DHT ใน prostate มากขึ้นจากอิทธิพล estrogen","Progesterone สูง","Inhibin ต่ำ"],
+   a:2,
+   why:"BPH เกิดจาก estrogen:testosterone ratio เปลี่ยน ทำให้ prostate ไวต่อ DHT → hyperplasia"},
+
+  {q:"การทำหมันเพศผู้ (castration) ส่งผลอย่างไรต่อ BPH",
+   choices:["เพิ่มขนาดต่อมลูกหมาก","ทำให้ต่อมลูกหมากฝ่อและอาการดีขึ้น","ไม่มีผล","ทำให้ testosterone เพิ่ม","กระตุ้น LH surge"],
+   a:1,
+   why:"Castration ลด testosterone → ลด DHT → ต่อมลูกหมากฝ่อและอาการดีขึ้น"}
+];   // เติมโจทย์ทีหลังได้
+const TF  = [
+  {q:"Testis ทำหน้าที่ทั้งสร้างอสุจิและสร้างฮอร์โมนเพศชาย", a:true,
+   why:"Seminiferous tubule สร้าง sperm ส่วน Leydig cell ระหว่างท่อสร้าง testosterone"},
+
+  {q:"Leydig cell ตอบสนองต่อ FSH เพื่อสร้าง testosterone", a:false,
+   why:"Leydig cell ตอบสนองต่อ LH ไม่ใช่ FSH"},
+
+  {q:"Sertoli cell เป็นตัวสร้าง androgen-binding protein (ABP)", a:true,
+   why:"ABP จาก Sertoli ทำให้ testosterone ในท่อสร้างอสุจิสูงเพียงพอสำหรับ spermatogenesis"},
+
+  {q:"FSH กระตุ้น Leydig cell โดยตรง", a:false,
+   why:"FSH กระตุ้น Sertoli cell ส่วน Leydig ถูกกระตุ้นโดย LH"},
+
+  {q:"Inhibin จาก Sertoli cell ลดการหลั่ง FSH จาก anterior pituitary", a:true,
+   why:"Inhibin ทำหน้าที่ยับยั้ง FSH เฉพาะเจาะจง"},
+
+  {q:"Spermatogenesis ต้องการอุณหภูมิสูงกว่าแกนร่างกาย", a:false,
+   why:"ต้องต่ำกว่าแกนร่างกายประมาณ 2–3°C เพื่อการสร้างอสุจิที่สมบูรณ์"},
+
+  {q:"Gubernaculum มีบทบาทในการดึงอัณฑะลงสู่ถุงอัณฑะ", a:true,
+   why:"โครงสร้างนี้เป็นเส้นใยช่วยนำทาง testis ลง scrotum ระหว่างพัฒนาตัวอ่อน"},
+
+  {q:"Cryptorchidism ทำให้ระดับ testosterone ลดลงอย่างมากเสมอ", a:false,
+   why:"Leydig cell ยังสร้าง testosterone ได้แต่ spermatogenesis เสีย"},
+
+  {q:"Epididymis เป็นที่ที่อสุจิกลายเป็นตัวอสุจิที่เคลื่อนไหวได้", a:true,
+   why:"Sperm เริ่ม mature และมี motility ใน epididymis"},
+
+  {q:"Accessory sex gland ทุกชนิดพบในทุกสปีชีส์", a:false,
+   why:"แต่ละสปีชีส์มี gland แตกต่าง เช่น สุนัขมีเฉพาะ prostate"},
+
+  {q:"Prostate gland เป็นต่อมเดียวที่พบในสัตว์เพศผู้ทุกชนิด", a:true,
+   why:"ทุกชนิดมี prostate แม้ขนาดและรูปร่างต่างกัน"},
+
+  {q:"Seminal vesicle สร้างของเหลวที่มี fructose เป็นพลังงานให้ sperm", a:true,
+   why:"Fructose จาก seminal vesicle เป็นพลังงานหลักให้ sperm"},
+
+  {q:"Bulbourethral gland มีหน้าที่สร้างสารหล่อลื่นและล้างท่อก่อนหลั่งน้ำเชื้อ", a:true,
+   why:"ต่อมนี้หลั่ง mucus ช่วยหล่อลื่นและล้าง urethra ก่อน ejaculation"},
+
+  {q:"การแข็งตัวขององคชาต (erection) อยู่ภายใต้การควบคุมของระบบ sympathetic", a:false,
+   why:"Erection ควบคุมโดย parasympathetic ผ่าน nitric oxide (NO) ทำให้หลอดเลือดขยาย"},
+
+  {q:"Emission phase ของการหลั่งน้ำเชื้อควบคุมโดยระบบ sympathetic", a:true,
+   why:"Sympathetic บีบตัว vas deferens และ accessory glands ส่งของเหลวไป urethra"},
+
+  {q:"Ejaculation เป็น reflex ที่ผ่าน pudendal nerve", a:true,
+   why:"Ejaculation เกิดจากการหดตัวของกล้ามเนื้อ ischiocavernosus และ bulbospongiosus ภายใต้ pudendal reflex"},
+
+  {q:"Oxytocin ไม่มีบทบาทในเพศผู้", a:false,
+   why:"Oxytocin ช่วยการบีบตัวของท่ออสุจิและการหลั่ง seminal fluid"},
+
+  {q:"Testosterone มีบทบาทใน secondary sex characteristics เช่นกล้ามเนื้อและเสียง", a:true,
+   why:"Testosterone ส่งผลต่อพัฒนาการลักษณะเพศชายทุติยภูมิ"},
+
+  {q:"BPH ในสุนัขเกิดจากอิทธิพลของ DHT ต่อ prostate gland", a:true,
+   why:"DHT (จาก testosterone โดย 5α-reductase) กระตุ้นการโตของ prostate"},
+
+  {q:"Castration สามารถรักษา BPH ในสุนัขได้เพราะลด testosterone และ DHT", a:true,
+   why:"การทำหมันลดแหล่งสร้าง androgen ทำให้ต่อมลูกหมากฝ่อและอาการดีขึ้น"}
+];
+
+/***********************
+ * UI – Tabs
+ ***********************/
+const tabsEl = document.getElementById('tabs');
+const views = [
+  {id:'mode-mcq', title:'🧩 MCQ'},
+  {id:'mode-tf',  title:'✅ True / False'}
+];
+let activeTab = views[0].id;
+
+function renderTabs(){
+  tabsEl.innerHTML = '';
+  views.forEach(v=>{
+    const b = document.createElement('button');
+    b.className = 'tab' + (v.id===activeTab ? ' active' : '');
+    b.textContent = v.title;
+    b.onclick = ()=>{ activeTab = v.id; updateView(); };
+    tabsEl.appendChild(b);
+  });
+}
+
+function updateView(){
+  views.forEach(v=>{
+    const s = document.getElementById(v.id);
+    if(!s) return;
+    if(v.id===activeTab){ s.classList.remove('hide'); }
+    else{ s.classList.add('hide'); }
+  });
+  renderTabs();
+}
+
+renderTabs();
+
+// ✅ อัปเดตชื่อแท็บให้ตรง index และไม่อ้างเกิน
+views[0].title = `🧩 MCQ (${MCQ.length} ข้อ)`;
+views[1].title = `✅ True / False (${TF.length} ข้อ)`;
+renderTabs();
+updateView();
+
+/***********************
+ * Mode – MCQ
+ ***********************/
+(function(){
+  const host=document.getElementById('mode-mcq');
+  let order = shuffle(MCQ.map((_,i)=>i));
+  let i=0, score=0;
+  const total = order.length;
+
+  // กันกรณีไม่มีข้อ
+  if(total===0){
+    host.innerHTML = `<div class="qcard">ยังไม่มีโจทย์ MCQ</div>`;
+    return;
+  }
+
+  const hud=document.createElement('div'); hud.className='scorebox';
+  hud.innerHTML = `<div class="badge" id="mcqProg">ข้อ 1 / ${total}</div>
+                   <div class="badge" id="mcqScore">คะแนน 0</div>
+                   <button class="secondary" id="mcqRestart">เริ่มใหม่/สุ่มใหม่</button>`;
+  host.appendChild(hud);
+
+  const qc=document.createElement('div'); qc.className='qcard'; host.appendChild(qc);
+
+  function renderQ(){
+    const item = MCQ[order[i]];
+    document.getElementById('mcqProg').textContent = `ข้อ ${i+1} / ${total}`;
+    qc.innerHTML = `<div><b>Q${i+1}.</b> ${item.q}</div>`;
+    const box=document.createElement('div'); box.className='choices'; qc.appendChild(box);
+    const shuffledChoices = shuffle(item.choices.map((c,idx)=>({c,idx})));
+    let locked=false;
+
+    shuffledChoices.forEach(({c,idx})=>{
+      const div=document.createElement('div');
+      div.className='choice'; div.innerHTML=c; box.appendChild(div);
+      div.onclick=()=>{
+        if(locked) return; locked=true;
+        const isCorrect = idx===item.a;
+        if(isCorrect){div.classList.add('correct'); score++;}
+        else{div.classList.add('wrong');}
+        // ไฮไลต์ตัวถูก
+        [...box.children].forEach(el=>{
+          const originalIndex=item.choices.indexOf(el.innerHTML);
+          if(originalIndex===item.a) el.classList.add('correct');
+        });
+        // เฉลย
+        const exp=document.createElement('div'); exp.className='answer';
+        exp.innerHTML = `<b>เฉลย:</b> ${item.choices[item.a]}<br><span class="muted">เหตุผล:</span> ${item.why||'-'}`;
+        qc.appendChild(exp);
+        // ปุ่มถัดไป
+        const nx=document.createElement('div'); nx.style.marginTop='10px';
+        nx.innerHTML = `<button id="btnNext">ถัดไป</button>`; qc.appendChild(nx);
+        document.getElementById('mcqScore').textContent = `คะแนน ${score}`;
+        document.getElementById('btnNext').onclick = ()=>{
+          i++; if(i>=total){
+            qc.innerHTML = `<div class="row"><div class="badge">จบชุด MCQ</div><div class="badge">คะแนนรวม: ${score} / ${total}</div></div>`;
+          } else { renderQ(); }
+        };
+      };
+    });
+  }
+
+  document.getElementById('mcqRestart').onclick=()=>{
+    order = shuffle(MCQ.map((_,i)=>i)); i=0; score=0;
+    document.getElementById('mcqScore').textContent='คะแนน 0';
+    renderQ();
+  };
+
+  renderQ();
+})();
+
+/***********************
+ * Mode – True / False
+ ***********************/
+(function(){
+  const host=document.getElementById('mode-tf');
+  let order = shuffle(TF.map((_,i)=>i));
+  let i=0, score=0;
+  const total = order.length;
+
+  if(total===0){
+    host.innerHTML = `<div class="qcard">ยังไม่มีโจทย์ True/False</div>`;
+    return;
+  }
+
+  const hud=document.createElement('div'); hud.className='scorebox';
+  hud.innerHTML = `<div class="badge" id="tfProg">ข้อ 1 / ${total}</div>
+                   <div class="badge" id="tfScore">คะแนน 0</div>
+                   <button class="secondary" id="tfRestart">เริ่มใหม่/สุ่มใหม่</button>`;
+  host.appendChild(hud);
+
+  const qc=document.createElement('div'); qc.className='qcard'; host.appendChild(qc);
+
+  function renderQ(){
+    const item=TF[order[i]];
+    document.getElementById('tfProg').textContent=`ข้อ ${i+1} / ${total}`;
+    qc.innerHTML = `<div><b>Q${i+1}.</b> ${item.q}</div>`;
+
+    const btnRow=document.createElement('div'); btnRow.style.display='flex'; btnRow.style.gap='8px';
+    const btnT=document.createElement('button'); btnT.textContent='ถูก (True)';
+    const btnF=document.createElement('button'); btnF.textContent='ผิด (False)'; btnF.className='secondary';
+    btnRow.append(btnT,btnF); qc.appendChild(btnRow);
+
+    let locked=false;
+    function mark(ans){
+      if(locked) return; locked=true;
+      const cor = item.a===ans; if(cor) score++;
+      document.getElementById('tfScore').textContent=`คะแนน ${score}`;
+      const exp=document.createElement('div'); exp.className='answer';
+      exp.innerHTML=`<b>เฉลย:</b> ${item.a?'<span class="ok">True</span>':'<span class="ng">False</span>'} · <span class="muted">เหตุผล:</span> ${item.why||'-'}`;
+      qc.appendChild(exp);
+      const nx=document.createElement('div'); nx.style.marginTop='10px'; nx.innerHTML='<button id="tfNext">ถัดไป</button>'; qc.appendChild(nx);
+      document.getElementById('tfNext').onclick=()=>{
+        i++; if(i>=total){
+          qc.innerHTML = `<div class="row"><div class="badge">จบชุด True/False</div><div class="badge">คะแนนรวม: ${score} / ${total}</div></div>`;
+        } else { renderQ(); }
+      };
+    }
+    btnT.onclick=()=>mark(true); btnF.onclick=()=>mark(false);
+  }
+
+  document.getElementById('tfRestart').onclick=()=>{
+    order = shuffle(TF.map((_,i)=>i)); i=0; score=0;
+    document.getElementById('tfScore').textContent='คะแนน 0';
+    renderQ();
+  };
+
+  renderQ();
+})();
+</script>
+
+</body>
+</html>
