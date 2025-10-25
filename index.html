@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Parasitology Quiz Hub</title>
+  <style>
+    :root{--bg:#0b1220;--panel:#121a2b;--muted:#8ea0b5;--text:#e6edf5;--accent:#66d9e8;--accent2:#a78bfa;--border:#1f2a44}
+    *{box-sizing:border-box} body{margin:0;font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;background:linear-gradient(180deg,#0b1220,#0b1628);color:var(--text)}
+    .wrap{max-width:1000px;margin:0 auto;padding:24px}
+    h1{margin:0 0 8px 0;font-size:28px} p.muted{color:var(--muted)}
+    .grid{display:grid;gap:16px;grid-template-columns:repeat(3,minmax(0,1fr))}
+    @media (max-width:900px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+    @media (max-width:620px){.grid{grid-template-columns:1fr}}
+    .card{background:linear-gradient(180deg,#121a2b,#0f182a);border:1px solid var(--border);border-radius:16px;padding:18px;text-decoration:none;color:var(--text);display:flex;flex-direction:column;gap:8px;min-height:140px}
+    .card:hover{border-color:#2a365a}
+    .label{font-size:12px;color:#a8c4eb;letter-spacing:.6px;text-transform:uppercase}
+    .title{font-size:20px;font-weight:800}
+    .desc{color:var(--muted);font-size:14px}
+    header{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
+    .chip{border:1px solid var(--border);padding:6px 10px;border-radius:999px;color:#a8c4eb}
+    footer{margin-top:24px;color:#779;font-size:12px;text-align:center}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div>
+        <h1>Physiology Quiz Hub</h1>
+        <p class="muted">เลือกหัวข้อที่ต้องการทำแบบฝึกหัด (สุ่มไม่ซ้ำ + เฉลยได้ทันที)</p>
+      </div>
+      <div class="chip">Works on Safari & Chrome</div>
+    </header>
+
+    <div class="grid">
+      <a class="card" href="calcium.html">
+        <div class="label">Quiz</div>
+        <div class="title"Calcium regulation</div>
+        <div class="desc">หม่อมหลวง</div>
+      </a>
+
+      <a class="card" href="repro1.html">
+        <div class="label">Quiz</div>
+        <div class="title">Physiology of the reproductive system</div>
+        <div class="desc">พี่พลอย</div>
+      </a>
+
+      <a class="card" href="repro2.html">
+        <div class="label">Quiz</div>
+        <div class="title">Physiology of male reproduction</div>
+        <div class="desc">พี่พลอย</div>
+      </a>
+
+      <a class="card" href="repro3.html">
+        <div class="label">Quiz</div>
+        <div class="title">Physiology of Female estrous</div>
+        <div class="desc">พี่พลอย</div>
+      </a>
+
+      <a class="card" href="repro4.html">
+        <div class="label">Quiz</div>
+        <div class="title">Physiology of Female fertilization</div>
+        <div class="desc">พี่พลอย</div>
+      </a>
+
+      <a class="card" href="repro5.html">
+        <div class="label">Quiz</div>
+        <div class="title">Physiology of Female lactation</div>
+        <div class="desc">พี่พลอย</div>
+      </a>
+
+      <a class="card" href="repro6.html">
+        <div class="label">Quiz</div>
+        <div class="title">Hormonal application</div>
+        <div class="desc">พี่พลอย</div>
+      </a>
+
+      <a class="card" href="shock.html">
+        <div class="label">Quiz</div>
+        <div class="title">Physiology of shock</div>
+        <div class="desc">สันติ</div>
+      </a>
+    </div>
+
+  </div>
+</body>
+</html>
