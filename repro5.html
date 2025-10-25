@@ -1,1 +1,422 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Physiology of female lactation – ชุดแบบทดสอบ (TH)</title>
+<style>
+  :root{--bg:#0f172a;--card:#111827;--ink:#e5e7eb;--muted:#94a3b8;--accent:#22d3ee;--good:#22c55e;--bad:#ef4444;--warn:#f59e0b}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Helvetica,Arial,sans-serif;background:linear-gradient(180deg,#0b1220,#0e1526);color:var(--ink)}
+  header{position:sticky;top:0;background:#0b1220cc;backdrop-filter:blur(6px);border-bottom:1px solid #1f2937;z-index:10}
+  .wrap{max-width:1100px;margin:0 auto;padding:18px}
+  h1{font-size:clamp(20px,2.8vw,34px);margin:8px 0 2px}
+  .tabs{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+  .tab{padding:10px 14px;border:1px solid #1f2937;border-radius:10px;background:#0b1324;color:#cbd5e1;cursor:pointer}
+  .tab.active{border-color:#0ea5e9;background:#0b2436;box-shadow:0 0 0 2px #0ea5e933 inset;color:#e2e8f0}
+  .card{background:var(--card);border:1px solid #1f2937;border-radius:14px;padding:18px;margin:16px 0;box-shadow:0 10px 30px #0004}
+  .grid{display:grid;gap:12px}
+  .grid.cols-2{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+  .muted{color:var(--muted)}
+  select,button,input[type="radio"]{accent-color:#06b6d4}
+  select{width:100%;padding:8px 10px;border-radius:10px;border:1px solid #334155;background:#0b1320;color:#e2e8f0}
+  button{background:#0ea5e9;border:none;padding:10px 14px;border-radius:10px;color:#001018;font-weight:700;cursor:pointer}
+  button.secondary{background:#0b1728;color:#e2e8f0;border:1px solid #1f2937}
+  .pill{display:inline-block;padding:4px 10px;border-radius:999px;border:1px solid #1f2937;background:#0b1320;color:#a5b4fc;font-size:12px}
+  .row{display:flex;align-items:center;gap:8px}
+  .k{font-weight:700;color:#67e8f9}
+  .ok{color:var(--good)}
+  .ng{color:var(--bad)}
+  .warn{color:var(--warn)}
+  .qcard{border:1px dashed #334155;padding:14px;border-radius:12px}
+  .choices{display:grid;gap:8px;margin-top:10px}
+  .choice{padding:10px;border:1px solid #293241;border-radius:10px;cursor:pointer;background:#0a1120}
+  .choice.correct{border-color:#14532d;background:#052014}
+  .choice.wrong{border-color:#7f1d1d;background:#1a0b0b}
+  .hide{display:none}
+  .tag{font-size:11px;opacity:.9;color:#a5b4fc;margin-left:6px}
+  .answer{border-left:3px solid #334155;padding-left:10px;margin-top:8px;color:#cbd5e1}
+  .inline-kbd{display:inline-block;border:1px solid #334155;border-bottom-width:3px;padding:2px 6px;border-radius:6px;background:#0b1320;color:#e5e7eb;font:600 12px/1 system-ui}
+  .siteGrid{display:grid;grid-template-columns:1.6fr 1fr;gap:10px;align-items:center}
+  .siteGrid h4{margin:0}
+  .scorebox{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+  .badge{padding:6px 10px;border-radius:10px;background:#062334;border:1px solid #0ea5e9;color:#7dd3fc}
+  .mini{font-size:12px}
+  footer{opacity:.7;text-align:center;padding:26px}
+  details{background:#0b1320;border:1px solid #1f2937;border-radius:10px;padding:8px}
+  summary{cursor:pointer;color:#7dd3fc}
+</style>
+</head>
+<body>
+<header>
+  <!-- ปุ่มกลับหน้าแรก (วางไว้ใต้ <header> หรือบนสุดของ <main>) -->
+<div style="margin:10px 0;">
+  <a href="index.html" 
+     style="display:inline-block;padding:8px 14px;background:#0b2436;
+            border:1px solid #0ea5e9;border-radius:10px;
+            color:#7dd3fc;text-decoration:none;font-weight:600;">
+    🏠กลับไปหน้าแรก
+  </a>
+</div>
 
+  <div class="wrap">
+    <h1>Physiology of female lactation</h1>
+    <div class="muted">โหมด: · <span class="pill">MCQ</span> · <span class="pill">True/False</span></div>
+    <div class="tabs" id="tabs"></div>
+  </div>
+</header>
+<main class="wrap">
+  <section id="mode-mcq" class="card hide"></section>
+  <section id="mode-tf" class="card hide"></section>
+  <section class="card">
+    <details>
+      <summary>📝 วิธีใช้</summary>
+      <ul>
+        <li><b>MCQ</b>: ตอบทีละข้อ สุ่มลำดับทุกครั้ง ต้องคลิกคำตอบก่อน จึงเห็นเฉลยและไปข้อถัดไป</li>
+        <li><b>True/False</b>: แนวเดียวกับ MCQ</li>
+        <li>คง <i>technical terms</i> ภาษาอังกฤษ</li>
+      </ul>
+    </details>
+  </section>
+</main>
+<footer class="muted">© 2025 – Vet Physiology Drill • Calcium regulation · Reproduction · Shock
+<script>
+function shuffle(arr){ const a=arr.slice(); for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]} return a; }
+
+/***********************
+ * MCQ / TF DATA
+ ***********************/
+const MCQ = [
+  {q:"ฮอร์โมนหลักที่กระตุ้นการสร้างน้ำนม (milk synthesis) คืออะไร",
+   choices:["Oxytocin","Prolactin","Progesterone","LH","FSH"],
+   a:1,
+   why:"Prolactin จาก anterior pituitary กระตุ้น alveolar epithelial cell ให้สร้างน้ำนม"},
+
+  {q:"ฮอร์โมนหลักที่กระตุ้นการขับน้ำนม (milk let-down reflex) คืออะไร",
+   choices:["Prolactin","Oxytocin","FSH","LH","Estrogen"],
+   a:1,
+   why:"Oxytocin จาก posterior pituitary ทำให้ myoepithelial cell รอบ alveoli หดตัว ขับน้ำนมออก"},
+
+  {q:"Ferguson reflex เกี่ยวข้องโดยตรงกับการหลั่งฮอร์โมนใด",
+   choices:["FSH","LH","Oxytocin","Prolactin","Estrogen"],
+   a:2,
+   why:"การยืดหัวนมและช่องคลอดกระตุ้น afferent pathway → hypothalamus → หลั่ง oxytocin"},
+
+  {q:"การดูดนมของลูก (suckling) กระตุ้นการหลั่งฮอร์โมนใดบ้าง",
+   choices:["Prolactin และ Oxytocin","Progesterone และ LH","Estrogen และ FSH","GnRH และ Cortisol","Inhibin และ GH"],
+   a:0,
+   why:"Suckling reflex → afferent nerve → hypothalamus → ลด dopamine → ↑Prolactin และ ↑Oxytocin"},
+
+  {q:"ในระหว่างตั้งครรภ์ ทำไมถึงไม่เกิดการหลั่งน้ำนมเต็มที่",
+   choices:["ไม่มี Prolactin","Progesterone และ Estrogen สูงยับยั้งการทำงานของ Prolactin ที่เต้านม","ไม่มี Oxytocin receptor","FSH สูง","ไม่มี alveoli พัฒนา"],
+   a:1,
+   why:"Estrogen/Progesterone สูงในครรภ์ยับยั้งการสร้างน้ำนมแม้ Prolactin สูงอยู่"},
+
+  {q:"หลังคลอด ระดับฮอร์โมนใดลดลงมากที่สุด ทำให้เริ่มการหลั่งน้ำนมจริง",
+   choices:["Progesterone และ Estrogen","Prolactin","Oxytocin","FSH","LH"],
+   a:0,
+   why:"หลังคลอด placenta หลุด → progesterone/estrogen ลด → prolactin ทำงานเต็มที่"},
+
+  {q:"กลไก feedback ของการดูดนมต่อ hypothalamic-pituitary-gonadal axis คือ",
+   choices:["เพิ่ม GnRH","ลด GnRH และกด LH/FSH","เพิ่ม LH","เพิ่ม Estrogen","เพิ่ม P4"],
+   a:1,
+   why:"การดูดนมกระตุ้น Prolactin ซึ่งกด GnRH → anovulation ระหว่างให้นม (lactational anestrus)"},
+
+  {q:"เซลล์ใดเป็นผู้สร้างน้ำนมในเต้านม",
+   choices:["Myoepithelial cell","Alveolar epithelial cell","Ductal cell","Stromal fibroblast","Endothelial cell"],
+   a:1,
+   why:"Alveolar epithelial cell (secretory cell) เป็นแหล่งสร้างน้ำนมใน alveoli"},
+
+  {q:"myoepithelial cell ในเต้านมมีหน้าที่",
+   choices:["สร้างน้ำนม","หลั่ง prolactin","บีบตัวดันน้ำนมออกจาก alveoli ภายใต้ oxytocin","ดูดซึมน้ำกลับ","สร้าง progesterone"],
+   a:2,
+   why:"Oxytocin ทำให้ myoepithelial cell รอบ alveoli หดตัว → น้ำนมไหลออก"},
+
+  {q:"แหล่งผลิต prolactin คือ",
+   choices:["Posterior pituitary","Anterior pituitary","Hypothalamus","Ovary","Placenta เท่านั้น"],
+   a:1,
+   why:"Prolactin สร้างจาก lactotroph cell ใน anterior pituitary"},
+
+  {q:"ปัจจัยใดควบคุม prolactin ทางลบ (inhibition) จาก hypothalamus",
+   choices:["TRH","Dopamine (PIH)","Oxytocin","GABA","Norepinephrine"],
+   a:1,
+   why:"Dopamine ทำหน้าที่ยับยั้งการหลั่ง prolactin (prolactin inhibitory hormone)"},
+
+  {q:"ผลของ prolactin ต่อ hypothalamusและ pituitary คือ",
+   choices:["เพิ่ม GnRH","ลด GnRH → suppress FSH/LH","เพิ่ม LH","เพิ่ม Estrogen","เพิ่ม Cortisol"],
+   a:1,
+   why:"Prolactin สูงระหว่างให้นมกด GnRH → ไม่มี LH surge → ไม่ตกไข่"},
+
+  {q:"การสร้างน้ำนม (lactogenesis) ระยะที่ 1 เริ่มต้นเมื่อใด",
+   choices:["กลางการตั้งครรภ์","หลังคลอด 1 วัน","ช่วงตกไข่","หลังหย่านม","ระหว่าง luteal phase"],
+   a:0,
+   why:"Lactogenesis I เริ่มช่วงกลางครรภ์เมื่อ alveoli พัฒนาแต่ถูกกดด้วยฮอร์โมนเพศ"},
+
+  {q:"lactogenesis ระยะที่ 2 (onset of copious milk secretion) เกิดเมื่อ",
+   choices:["ก่อนคลอด","ทันทีหลังคลอดเมื่อ P4/E2 ลดลง","กลางครรภ์","หลังหย่านม","ช่วง follicular phase"],
+   a:1,
+   why:"หลังคลอด placenta หลุด → P4/E2 ลดลง → prolactin เริ่มสร้างน้ำนมมากขึ้น"},
+
+  {q:"Galactopoiesis คือ",
+   choices:["การเริ่มสร้างน้ำนมครั้งแรก","การคงการสร้างน้ำนมต่อเนื่องภายใต้อิทธิพล prolactin","การขับน้ำนม","การหลั่ง Oxytocin","การยับยั้งน้ำนมหลังหย่านม"],
+   a:1,
+   why:"Galactopoiesis = การรักษาการผลิตน้ำนมอย่างต่อเนื่องโดย prolactin และการดูดนม"},
+
+  {q:"การหย่านม (weaning) ส่งผลต่อเต้านมอย่างไร",
+   choices:["น้ำนมเพิ่มขึ้น","alveolar cell ฝ่อ (involution) และการสร้างน้ำนมหยุด","เกิด mastitis","โปรแลคตินสูงขึ้น","ยังคงหลั่ง oxytocin ต่อ"],
+   a:1,
+   why:"เมื่อไม่มีการดูดนม → prolactin ลด → alveolar cell ฝ่อ และการสร้างน้ำนมหยุด"},
+
+  {q:"ในโคนม ฮอร์โมนใดช่วยกระตุ้น galactopoiesis ร่วมกับ prolactin",
+   choices:["Cortisol และ GH","FSH","Progesterone","LH","Aldosterone"],
+   a:0,
+   why:"GH และ cortisol สนับสนุน metabolism สำหรับการสร้างน้ำนม"},
+
+  {q:"colostrum มีคุณสมบัติเด่นอย่างไร",
+   choices:["มีไขมันต่ำและโปรตีนต่ำ","อุดมด้วย immunoglobulin โดยเฉพาะ IgG","ไม่มี antibody","เป็นของเสียจากเต้านม","มีโปรแลคตินสูงมาก"],
+   a:1,
+   why:"Colostrum มี IgG สูงให้ passive immunity แก่ลูกแรกเกิด"},
+
+  {q:"กลไก milk ejection reflex เกี่ยวข้องกับเส้นทางประสาทแบบใด",
+   choices:["afferent จากหัวนม → hypothalamus → posterior pituitary → oxytocin หลั่ง","afferent → anterior pituitary → prolactin หลั่ง","efferent จาก spinal cord → parotid gland","afferent จากมดลูก → adrenal gland","ไม่มี involvement ของระบบประสาท"],
+   a:0,
+   why:"การดูดนมกระตุ้น afferent nerve → hypothalamus → posterior pituitary → oxytocin"},
+
+  {q:"ในคนและสัตว์บางชนิด prolactin สามารถหลั่งเพิ่มจากการได้ยินเสียงร้องลูกได้", 
+   choices:["จริง","เท็จ","เฉพาะในสัตว์ปีก","เฉพาะในโค","เฉพาะในแมว"],
+   a:0,
+   why:"สิ่งเร้าทางประสาท เช่น เสียงร้องลูก สามารถกระตุ้น reflex หลั่ง prolactin และ oxytocin ได้"}
+];   // เติมโจทย์ทีหลังได้
+const TF  = [
+  {q:"Prolactin เป็นฮอร์โมนหลักที่กระตุ้นการสร้างน้ำนม (milk synthesis)", a:true,
+   why:"Prolactin จาก anterior pituitary กระตุ้น alveolar epithelial cell ให้สร้างน้ำนม"},
+
+  {q:"Oxytocin เป็นฮอร์โมนหลักที่กระตุ้นการขับน้ำนม (milk let-down reflex)", a:true,
+   why:"Oxytocin จาก posterior pituitary ทำให้ myoepithelial cell หดตัว ขับน้ำนมออก"},
+
+  {q:"ระหว่างตั้งครรภ์ การหลั่งน้ำนมเต็มที่ถูกยับยั้งโดยระดับ estrogen และ progesterone ที่สูง", a:true,
+   why:"ฮอร์โมนจาก placenta สูงจะยับยั้งการทำงานของ prolactin แม้มีการสร้างน้ำนมบางส่วน"},
+
+  {q:"หลังคลอด ระดับ progesterone และ estrogen ที่ลดลงทำให้ prolactin ทำงานได้เต็มที่", a:true,
+   why:"เมื่อ placenta หลุด → P4/E2 ลด → prolactin กระตุ้น lactogenesis ได้เต็มที่"},
+
+  {q:"การดูดนม (suckling) กระตุ้นการหลั่ง prolactin และ oxytocin พร้อมกัน", a:true,
+   why:"สัญญาณประสาทจากหัวนมไป hypothalamus → เพิ่ม prolactin และ oxytocin"},
+
+  {q:"Dopamine จาก hypothalamus มีบทบาทกระตุ้นการหลั่ง prolactin", a:false,
+   why:"Dopamine เป็น prolactin inhibitory hormone (PIH) ที่ยับยั้งการหลั่ง prolactin"},
+
+  {q:"Ferguson reflex คือการดูดนมกระตุ้น prolactin", a:false,
+   why:"Ferguson reflex คือการยืดปากมดลูก/หัวนม → หลั่ง oxytocin ไม่ใช่ prolactin"},
+
+  {q:"ระหว่างให้นม prolactin สูงมีผลกดการตกไข่โดยลด GnRH", a:true,
+   why:"Prolactin สูงลด GnRH → กด LH/FSH → เกิด lactational anestrus"},
+
+  {q:"Myoepithelial cell เป็นเซลล์สร้างน้ำนม", a:false,
+   why:"Myoepithelial cell ทำหน้าที่บีบตัวดันน้ำนมออกจาก alveoli ไม่ใช่สร้างน้ำนม"},
+
+  {q:"Alveolar epithelial cell เป็นเซลล์ที่สร้างน้ำนมใน alveoli", a:true,
+   why:"Alveolar epithelial (secretory) cell สร้างส่วนประกอบของน้ำนม"},
+
+  {q:"Lactogenesis phase I เกิดขึ้นหลังคลอด", a:false,
+   why:"Lactogenesis I เกิดช่วงกลางครรภ์ แต่ถูกยับยั้งโดย P4/E2"},
+
+  {q:"Lactogenesis phase II (onset of copious milk secretion) เกิดหลังคลอดเมื่อ P4/E2 ลดลง", a:true,
+   why:"หลังคลอด placenta หลุด → P4/E2 ลด → prolactin กระตุ้นการสร้างน้ำนมมากขึ้น"},
+
+  {q:"Galactopoiesis คือกระบวนการคงการสร้างน้ำนมต่อเนื่องหลังเริ่มให้นม", a:true,
+   why:"เป็นการรักษาการหลั่งน้ำนมต่อเนื่องโดย prolactin และการดูดนมสม่ำเสมอ"},
+
+  {q:"การหย่านม (weaning) ทำให้ alveolar cell ฝ่อและการสร้างน้ำนมหยุดลง", a:true,
+   why:"เมื่อไม่มีการดูดนม → prolactin ลด → alveolar cell ฝ่อ (involution)"},
+
+  {q:"Colostrum มีโปรตีนต่ำแต่ไขมันสูงกว่าน้ำนมปกติ", a:false,
+   why:"Colostrum มีโปรตีนและ immunoglobulin สูงมาก แต่ไขมันต่ำ"},
+
+  {q:"Colostrum มี IgG สูงให้ passive immunity แก่ลูกแรกเกิด", a:true,
+   why:"Colostrum อุดมด้วย IgG และสารภูมิคุ้มกันจากแม่"},
+
+  {q:"การได้ยินเสียงร้องของลูกสามารถกระตุ้น reflex การหลั่ง oxytocin ได้", a:true,
+   why:"เสียงหรือการสัมผัสลูกเป็น stimuli ที่กระตุ้น hypothalamus ให้หลั่ง oxytocin"},
+
+  {q:"Cortisol และ GH มีส่วนช่วยในการสร้างน้ำนม (galactopoiesis)", a:true,
+   why:"GH และ cortisol สนับสนุน metabolism ของการสร้างน้ำนมร่วมกับ prolactin"},
+
+  {q:"Progesterone เป็นฮอร์โมนกระตุ้นให้เกิดการขับน้ำนม", a:false,
+   why:"Progesterone ยับยั้งการขับและการสร้างน้ำนม"},
+
+  {q:"การขับน้ำนม (milk ejection) เป็น reflex ที่เกี่ยวข้องกับระบบประสาทอัตโนมัติ", a:true,
+   why:"เป็น neuroendocrine reflex: afferent จากหัวนม → hypothalamus → oxytocin → หด myoepithelial cell"}
+];
+
+/***********************
+ * UI – Tabs
+ ***********************/
+const tabsEl = document.getElementById('tabs');
+const views = [
+  {id:'mode-mcq', title:'🧩 MCQ'},
+  {id:'mode-tf',  title:'✅ True / False'}
+];
+let activeTab = views[0].id;
+
+function renderTabs(){
+  tabsEl.innerHTML = '';
+  views.forEach(v=>{
+    const b = document.createElement('button');
+    b.className = 'tab' + (v.id===activeTab ? ' active' : '');
+    b.textContent = v.title;
+    b.onclick = ()=>{ activeTab = v.id; updateView(); };
+    tabsEl.appendChild(b);
+  });
+}
+
+function updateView(){
+  views.forEach(v=>{
+    const s = document.getElementById(v.id);
+    if(!s) return;
+    if(v.id===activeTab){ s.classList.remove('hide'); }
+    else{ s.classList.add('hide'); }
+  });
+  renderTabs();
+}
+
+renderTabs();
+
+// ✅ อัปเดตชื่อแท็บให้ตรง index และไม่อ้างเกิน
+views[0].title = `🧩 MCQ (${MCQ.length} ข้อ)`;
+views[1].title = `✅ True / False (${TF.length} ข้อ)`;
+renderTabs();
+updateView();
+
+/***********************
+ * Mode – MCQ
+ ***********************/
+(function(){
+  const host=document.getElementById('mode-mcq');
+  let order = shuffle(MCQ.map((_,i)=>i));
+  let i=0, score=0;
+  const total = order.length;
+
+  // กันกรณีไม่มีข้อ
+  if(total===0){
+    host.innerHTML = `<div class="qcard">ยังไม่มีโจทย์ MCQ</div>`;
+    return;
+  }
+
+  const hud=document.createElement('div'); hud.className='scorebox';
+  hud.innerHTML = `<div class="badge" id="mcqProg">ข้อ 1 / ${total}</div>
+                   <div class="badge" id="mcqScore">คะแนน 0</div>
+                   <button class="secondary" id="mcqRestart">เริ่มใหม่/สุ่มใหม่</button>`;
+  host.appendChild(hud);
+
+  const qc=document.createElement('div'); qc.className='qcard'; host.appendChild(qc);
+
+  function renderQ(){
+    const item = MCQ[order[i]];
+    document.getElementById('mcqProg').textContent = `ข้อ ${i+1} / ${total}`;
+    qc.innerHTML = `<div><b>Q${i+1}.</b> ${item.q}</div>`;
+    const box=document.createElement('div'); box.className='choices'; qc.appendChild(box);
+    const shuffledChoices = shuffle(item.choices.map((c,idx)=>({c,idx})));
+    let locked=false;
+
+    shuffledChoices.forEach(({c,idx})=>{
+      const div=document.createElement('div');
+      div.className='choice'; div.innerHTML=c; box.appendChild(div);
+      div.onclick=()=>{
+        if(locked) return; locked=true;
+        const isCorrect = idx===item.a;
+        if(isCorrect){div.classList.add('correct'); score++;}
+        else{div.classList.add('wrong');}
+        // ไฮไลต์ตัวถูก
+        [...box.children].forEach(el=>{
+          const originalIndex=item.choices.indexOf(el.innerHTML);
+          if(originalIndex===item.a) el.classList.add('correct');
+        });
+        // เฉลย
+        const exp=document.createElement('div'); exp.className='answer';
+        exp.innerHTML = `<b>เฉลย:</b> ${item.choices[item.a]}<br><span class="muted">เหตุผล:</span> ${item.why||'-'}`;
+        qc.appendChild(exp);
+        // ปุ่มถัดไป
+        const nx=document.createElement('div'); nx.style.marginTop='10px';
+        nx.innerHTML = `<button id="btnNext">ถัดไป</button>`; qc.appendChild(nx);
+        document.getElementById('mcqScore').textContent = `คะแนน ${score}`;
+        document.getElementById('btnNext').onclick = ()=>{
+          i++; if(i>=total){
+            qc.innerHTML = `<div class="row"><div class="badge">จบชุด MCQ</div><div class="badge">คะแนนรวม: ${score} / ${total}</div></div>`;
+          } else { renderQ(); }
+        };
+      };
+    });
+  }
+
+  document.getElementById('mcqRestart').onclick=()=>{
+    order = shuffle(MCQ.map((_,i)=>i)); i=0; score=0;
+    document.getElementById('mcqScore').textContent='คะแนน 0';
+    renderQ();
+  };
+
+  renderQ();
+})();
+
+/***********************
+ * Mode – True / False
+ ***********************/
+(function(){
+  const host=document.getElementById('mode-tf');
+  let order = shuffle(TF.map((_,i)=>i));
+  let i=0, score=0;
+  const total = order.length;
+
+  if(total===0){
+    host.innerHTML = `<div class="qcard">ยังไม่มีโจทย์ True/False</div>`;
+    return;
+  }
+
+  const hud=document.createElement('div'); hud.className='scorebox';
+  hud.innerHTML = `<div class="badge" id="tfProg">ข้อ 1 / ${total}</div>
+                   <div class="badge" id="tfScore">คะแนน 0</div>
+                   <button class="secondary" id="tfRestart">เริ่มใหม่/สุ่มใหม่</button>`;
+  host.appendChild(hud);
+
+  const qc=document.createElement('div'); qc.className='qcard'; host.appendChild(qc);
+
+  function renderQ(){
+    const item=TF[order[i]];
+    document.getElementById('tfProg').textContent=`ข้อ ${i+1} / ${total}`;
+    qc.innerHTML = `<div><b>Q${i+1}.</b> ${item.q}</div>`;
+
+    const btnRow=document.createElement('div'); btnRow.style.display='flex'; btnRow.style.gap='8px';
+    const btnT=document.createElement('button'); btnT.textContent='ถูก (True)';
+    const btnF=document.createElement('button'); btnF.textContent='ผิด (False)'; btnF.className='secondary';
+    btnRow.append(btnT,btnF); qc.appendChild(btnRow);
+
+    let locked=false;
+    function mark(ans){
+      if(locked) return; locked=true;
+      const cor = item.a===ans; if(cor) score++;
+      document.getElementById('tfScore').textContent=`คะแนน ${score}`;
+      const exp=document.createElement('div'); exp.className='answer';
+      exp.innerHTML=`<b>เฉลย:</b> ${item.a?'<span class="ok">True</span>':'<span class="ng">False</span>'} · <span class="muted">เหตุผล:</span> ${item.why||'-'}`;
+      qc.appendChild(exp);
+      const nx=document.createElement('div'); nx.style.marginTop='10px'; nx.innerHTML='<button id="tfNext">ถัดไป</button>'; qc.appendChild(nx);
+      document.getElementById('tfNext').onclick=()=>{
+        i++; if(i>=total){
+          qc.innerHTML = `<div class="row"><div class="badge">จบชุด True/False</div><div class="badge">คะแนนรวม: ${score} / ${total}</div></div>`;
+        } else { renderQ(); }
+      };
+    }
+    btnT.onclick=()=>mark(true); btnF.onclick=()=>mark(false);
+  }
+
+  document.getElementById('tfRestart').onclick=()=>{
+    order = shuffle(TF.map((_,i)=>i)); i=0; score=0;
+    document.getElementById('tfScore').textContent='คะแนน 0';
+    renderQ();
+  };
+
+  renderQ();
+})();
+</script>
+
+</body>
+</html>
