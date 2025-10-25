@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Hormonal appilcation – ชุดแบบทดสอบ (TH)</title>
+<style>
+  :root{--bg:#0f172a;--card:#111827;--ink:#e5e7eb;--muted:#94a3b8;--accent:#22d3ee;--good:#22c55e;--bad:#ef4444;--warn:#f59e0b}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Helvetica,Arial,sans-serif;background:linear-gradient(180deg,#0b1220,#0e1526);color:var(--ink)}
+  header{position:sticky;top:0;background:#0b1220cc;backdrop-filter:blur(6px);border-bottom:1px solid #1f2937;z-index:10}
+  .wrap{max-width:1100px;margin:0 auto;padding:18px}
+  h1{font-size:clamp(20px,2.8vw,34px);margin:8px 0 2px}
+  .tabs{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+  .tab{padding:10px 14px;border:1px solid #1f2937;border-radius:10px;background:#0b1324;color:#cbd5e1;cursor:pointer}
+  .tab.active{border-color:#0ea5e9;background:#0b2436;box-shadow:0 0 0 2px #0ea5e933 inset;color:#e2e8f0}
+  .card{background:var(--card);border:1px solid #1f2937;border-radius:14px;padding:18px;margin:16px 0;box-shadow:0 10px 30px #0004}
+  .grid{display:grid;gap:12px}
+  .grid.cols-2{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+  .muted{color:var(--muted)}
+  select,button,input[type="radio"]{accent-color:#06b6d4}
+  select{width:100%;padding:8px 10px;border-radius:10px;border:1px solid #334155;background:#0b1320;color:#e2e8f0}
+  button{background:#0ea5e9;border:none;padding:10px 14px;border-radius:10px;color:#001018;font-weight:700;cursor:pointer}
+  button.secondary{background:#0b1728;color:#e2e8f0;border:1px solid #1f2937}
+  .pill{display:inline-block;padding:4px 10px;border-radius:999px;border:1px solid #1f2937;background:#0b1320;color:#a5b4fc;font-size:12px}
+  .row{display:flex;align-items:center;gap:8px}
+  .k{font-weight:700;color:#67e8f9}
+  .ok{color:var(--good)}
+  .ng{color:var(--bad)}
+  .warn{color:var(--warn)}
+  .qcard{border:1px dashed #334155;padding:14px;border-radius:12px}
+  .choices{display:grid;gap:8px;margin-top:10px}
+  .choice{padding:10px;border:1px solid #293241;border-radius:10px;cursor:pointer;background:#0a1120}
+  .choice.correct{border-color:#14532d;background:#052014}
+  .choice.wrong{border-color:#7f1d1d;background:#1a0b0b}
+  .hide{display:none}
+  .tag{font-size:11px;opacity:.9;color:#a5b4fc;margin-left:6px}
+  .answer{border-left:3px solid #334155;padding-left:10px;margin-top:8px;color:#cbd5e1}
+  .inline-kbd{display:inline-block;border:1px solid #334155;border-bottom-width:3px;padding:2px 6px;border-radius:6px;background:#0b1320;color:#e5e7eb;font:600 12px/1 system-ui}
+  .siteGrid{display:grid;grid-template-columns:1.6fr 1fr;gap:10px;align-items:center}
+  .siteGrid h4{margin:0}
+  .scorebox{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+  .badge{padding:6px 10px;border-radius:10px;background:#062334;border:1px solid #0ea5e9;color:#7dd3fc}
+  .mini{font-size:12px}
+  footer{opacity:.7;text-align:center;padding:26px}
+  details{background:#0b1320;border:1px solid #1f2937;border-radius:10px;padding:8px}
+  summary{cursor:pointer;color:#7dd3fc}
+</style>
+</head>
+<body>
+<header>
+  <!-- ปุ่มกลับหน้าแรก (วางไว้ใต้ <header> หรือบนสุดของ <main>) -->
+<div style="margin:10px 0;">
+  <a href="index.html" 
+     style="display:inline-block;padding:8px 14px;background:#0b2436;
+            border:1px solid #0ea5e9;border-radius:10px;
+            color:#7dd3fc;text-decoration:none;font-weight:600;">
+    🏠กลับไปหน้าแรก
+  </a>
+</div>
+
+  <div class="wrap">
+    <h1>Hormonal appilcation</h1>
+    <div class="muted">โหมด: · <span class="pill">MCQ</span> · <span class="pill">True/False</span></div>
+    <div class="tabs" id="tabs"></div>
+  </div>
+</header>
+<main class="wrap">
+  <section id="mode-mcq" class="card hide"></section>
+  <section id="mode-tf" class="card hide"></section>
+  <section class="card">
+    <details>
+      <summary>📝 วิธีใช้</summary>
+      <ul>
+        <li><b>MCQ</b>: ตอบทีละข้อ สุ่มลำดับทุกครั้ง ต้องคลิกคำตอบก่อน จึงเห็นเฉลยและไปข้อถัดไป</li>
+        <li><b>True/False</b>: แนวเดียวกับ MCQ</li>
+        <li>คง <i>technical terms</i> ภาษาอังกฤษ</li>
+      </ul>
+    </details>
+  </section>
+</main>
+<footer class="muted">© 2025 – Vet Physiology Drill • Calcium regulation · Reproduction · Shock
+<script>
+function shuffle(arr){ const a=arr.slice(); for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]} return a; }
+
+/***********************
+ * MCQ / TF DATA
+ ***********************/
+const MCQ = [
+  {q:"โปรโตคอลที่ใช้สำหรับ synchronized estrus ในแกะ (ewes) มักใช้ร่วมกันคือ progestagen sponge + Prostaglandin F2α + PMSG หรือ hCG เพื่อเพิ่มผลลัพธ์ ซึ่งจากการศึกษาหนึ่งใน Barki ewes พบอัตราท้องและการคลอดเพิ่มขึ้นอย่างมีนัยสำคัญ :contentReference[oaicite:3]{index=3}",
+   choices:["ถูกต้อง", "ผิด"],
+   a:0,
+   why:"งานวิจัยพบว่าใช้ sponge + PGF₂α + PMSG/hCG → อัตราท้อง 100 % ในกลุ่มทดลอง :contentReference[oaicite:4]{index=4}"},
+
+  {q:"ฮอร์โมน Diethylstilboestrol (DES) เคยใช้เป็น growth promoter ในโคและสุกร แต่ปัจจุบันถูกจำกัดการใช้เนื่องจากความเสี่ยงต่อผู้บริโภค :contentReference[oaicite:6]{index=6}",
+   choices:["ถูกต้อง", "ผิด"],
+   a:0,
+   why:"เอกสาร FAO อธิบายว่า DES/hexoestrol เคยใช้ แต่ถูกควบคุมอย่างเข้มงวด :contentReference[oaicite:7]{index=7}"},
+
+  {q:"การใช้ implant ฮอร์โมนเพศชาย (androgens) ในโค → เพื่อเพิ่ม feed conversion efficiency (FCE) เป็นการใช้ที่ไม่มีข้อถกเถียงเรื่อง residues ในเนื้อสัตว์ :contentReference[oaicite:8]{index=8}",
+   choices:["ถูกต้อง", "ผิด"],
+   a:1,
+   why:"แม้จะมีประโยชน์ แต่มีความกังวลเรื่อง residue และสุขภาพผู้บริโภค จึงไม่เป็นที่ยอมรับโดยทั่วไป :contentReference[oaicite:9]{index=9}"},
+
+  {q:"ฮอร์โมน Gonadotropin‑releasing hormone (GnRH) analogue ใช้เพื่อ ‘induce ovulation’ ในสัตว์ได้ โดยเฉพาะเมื่อใช้ร่วมกับ protocol synchronization :contentReference[oaicite:11]{index=11}",
+   choices:["ถูกต้อง", "ผิด"],
+   a:0,
+   why:"การประยุกต์ใช้ GnRH หรือ analogue ในการจัดเวลาตกไข่เป็นเรื่องที่ใช้จริงในสัตวแพทย์"},
+
+  {q:"ในโปรโตคอล superovulation จะไม่ใช้ PMSG หรือ eCG เพราะจะไม่มีผลต่อ follicle multiple ovulation :contentReference[oaicite:14]{index=14}",
+   choices:["ถูกต้อง", "ผิด"],
+   a:1,
+   why:"งานวิจัยใช้ PMSG/eCG เพื่อกระตุ้น follicle multiple → twinning/triplets เพิ่มขึ้น :contentReference[oaicite:15]{index=15}"},
+
+  {q:"การใช้ฮอร์โมน Prostaglandin F2α (PGF₂α) ใช้ในการ luteolysis เพื่อนำมาใช้ใน estrus synchronization :contentReference[oaicite:17]{index=17}",
+   choices:["ถูกต้อง", "ผิด"],
+   a:0,
+   why:"PGF₂α ถูกใช้เพื่อทำลาย corpus luteum ที่มีอยู่แล้ว → เริ่มรอบใหม่ได้"},
+
+  {q:"ในโค การใช้ Progesterone หูปล่อย (CIDR / vaginal device) เพื่อยืด luteal phase เป็นส่วนหนึ่งของ estrus synchronization :contentReference[oaicite:19]{index=19}",
+   choices:["ถูกต้อง", "ผิด"],
+   a:0,
+   why:"โปรโตคอลใส่ progestagen device เป็นวิธีหนึ่งที่ใช้"},
+
+  {q:"การใช้ฮอร์โมนในสัตว์อาจไม่มีผลต่อคุณภาพตัวอ่อน (embryo) หรือค่า litter size เลยแม้จะ synchronize สำเร็จ :contentReference[oaicite:20]{index=20}",
+   choices:["ถูกต้อง", "ผิด"],
+   a:1,
+   why:"ในงานวิจัยพบว่าแม้ estrus response สูง แต่ conception / lambing ยังแตกต่างกัน → ต้องคำนึงเพิ่มเติม"},
+
+  {q:"การใช้ฮอร์โมนในสัตว์เพื่อเพิ่มผลผลิต (growth promoter) ไม่มีประเด็นด้านความปลอดภัยต่อผู้บริโภคหรือสิ่งแวดล้อมเลย :contentReference[oaicite:21]{index=21}",
+   choices:["ถูกต้อง", "ผิด"],
+   a:1,
+   why:"มีข้อกังวลเรื่อง residue และผลระยะยาวต่อผู้บริโภคและสิ่งแวดล้อม"},
+
+  {q:"ฮอร์โมน Estrogen หรือ gestagens ใช้ใน implant เพื่อเพิ่มอัตราการเจริญเติบโต (growth rate) ในโคและสุกรได้ :contentReference[oaicite:23]{index=23}",
+   choices:["ถูกต้อง", "ผิด"],
+   a:0,
+   why:"FAO รายงานการใช้ estrogen/gestagen เป็น growth promoters"},
+
+  {q:"การใช้ฮอร์โมนสังเคราะห์ในสัตว์ (livestock) ไม่มีข้อจำกัดในประเทศยุโรปหรืออเมริกา :contentReference[oaicite:24]{index=24}",
+   choices:["ถูกต้อง", "ผิด"],
+   a:1,
+   why:"มีข้อจำกัดเข้มงวดโดยเฉพาะในยุโรป/สหรัฐอเมริกา เช่น DES ถูกห้ามแล้ว"},
+
+  {q:"Hormonally-mediated reproductive technologies (เช่น IVF / superovulation) มีบทบาทเพิ่มในสัตวแพทย์เพื่อเพิ่มผลผลิตและความหลากหลายของพันธุ์ :contentReference[oaicite:25]{index=25}",
+   choices:["ถูกต้อง", "ผิด"],
+   a:0,
+   why:"บทความกล่าวว่า hormonal protocols เป็นส่วนสำคัญของ reproduction technology"},
+
+  {q:"การใช้ hCG ในสัตว์เมียสามารถใช้กระตุ้น LH surge และ ovulation :contentReference[oaicite:27]{index=27}",
+   choices:["ถูกต้อง", "ผิด"],
+   a:0,
+   why:"ในโปรโตคอลทดลองใช้ hCG 500 IU เพื่อกระตุ้น ovulation ในแกะ"},
+
+  {q:"โปรโตคอล estrus synchronization ไม่จำเป็นต้องคำนึงถึง body condition score, season, หรือ nutritional status :contentReference[oaicite:28]{index=28}",
+   choices:["ถูกต้อง", "ผิด"],
+   a:1,
+   why:"บทความระบุว่า success ขึ้นกับ season และ productive status :contentReference[oaicite:29]{index=29}"},
+
+  {q:"การใช้ฮอร์โมนในสัตว์สอดคล้องกับหลักจริยธรรมและสวัสดิภาพสัตว์เสมอไม่มีข้อขัดแย้ง :contentReference[oaicite:30]{index=30}",
+   choices:["ถูกต้อง", "ผิด"],
+   a:1,
+   why:"มีประเด็นด้านสวัสดิภาพสัตว์และจริยธรรม เช่น hormone treatment ของ livestock"},
+
+  {q:"ฮอร์โมน Progesterone และ progestagens สามารถใช้เพื่อ suppress estrus ในสัตว์เพศเมียได้ :contentReference[oaicite:32]{index=32}",
+   choices:["ถูกต้อง", "ผิด"],
+   a:0,
+   why:"การใช้ progestagens เพื่อยับยั้งการเป็นสัดเป็นวิธีหนึ่งที่ใช้จริง"},
+
+  {q:"การใช้ฮอร์โมนในสัตว์เพื่อ growth promotion ไม่มีผลต่อ lean : fat ratio ของซากสัตว์", a:"ผิด",
+   choices:["ถูกต้อง", "ผิด"],
+   a:1,
+   why:"งานวิจัยพบว่าการใช้ hormone เพิ่ม lean/fat ratio ในซากสัตว์ได้ :contentReference[oaicite:33]{index=33}"},
+
+  {q:"ฮอร์โมน Prolactin ใช้เป็นส่วนหนึ่งของโปรโตคอล superovulation ในสัตว์เมียทั่วไป", choices:["ถูกต้อง","ผิด"],
+   a:1,
+   why:"โปรโตคอลส่วนใหญ่ใช้ PMSG/eCG/hCG/FSH ไม่ได้ใช้ prolactin เพื่อกระตุ้น superovulation"},
+
+  {q:"การใช้ฮอร์โมน Melengestrol acetate (MGA) เป็นตัวอย่างของ gestagen ที่ใช้ในโคเพื่อ growth promotion หรือ estrus suppression :contentReference[oaicite:36]{index=36}",
+   choices:["ถูกต้อง","ผิด"],
+   a:0,
+   why:"MGA เป็น gestagen ที่ใช้เพื่อควบคุม estrus หรือเพิ่มการเจริญเติบโตในโค"},
+
+  {q:"การใช้ฮอร์โมนเพื่อ estrus synchronization สามารถลดช่วงการเตรียมผสม (breeding period) และจัด fixed time AI ได้ :contentReference[oaicite:37]{index=37}",
+   choices:["ถูกต้อง","ผิด"],
+   a:0,
+   why:"การซิงโครไนซ์ estrus ช่วยให้ทำ fixed-time AI และเพิ่มประสิทธิภาพ"},
+
+  {q:"ฮอร์โมน Oxytocin ถูกใช้หลักๆในโปรโตคอล estrus synchronization", choices:["ถูกต้อง","ผิด"],
+   a:1,
+   why:"Oxytocin ไม่มีบทบาทหลักในการซิงโครไนซ์ estrus แต่ใช้ในการบีบมดลูก/ขับรก"},
+
+  {q:"ใช้ GnRH เพื่อ superovulation ในสัตว์เมียเป็นวิธีที่แพร่หลายในฟาร์ม", choices:["ถูกต้อง","ผิด"],
+   a:1,
+   why:"แม้ GnRH ใช้ในบางกรณี แต่โปรโตคอล superovulation ส่วนใหญ่ใช้ FSH/eCG/hCG มากกว่า"},
+
+  {q:"ในสัตว์ที่ใช้ hormonal implant เพื่อเพิ่มความเจริญเติบโต ต้องพิจารณาการตกค้าง (residue) ในเนื้อที่ออกสู่ผู้บริโภค", choices:["ถูกต้อง","ผิด"],
+   a:0,
+   why:"บทความ FAO กล่าวถึงการพิจารณาความเสี่ยง residue เมื่อใช้ hormone ใน livestock :contentReference[oaicite:40]{index=40}"},
+
+  {q:"โปรโตคอล estrus synchronization ช่วยให้ AI แบบ fixed time (FTAI) ทำได้แม้ไม่มีการตรวจหา standing heat", choices:["ถูกต้อง","ผิด"],
+   a:0,
+   why:"การซิงโครไนซ์ ให้เวลาเป็นที่รู้ล่วงหน้า → ทำ FTAI ได้โดยไม่ต้องรอ standing heat :contentReference[oaicite:41]{index=41}"},
+
+  {q:"การใช้ฮอร์โมนทั้งหมดในสัตว์ถูกควบคุมอย่างเดียวในด้านการเจริญพันธุ์ ไม่รวมการใช้เพื่อเพิ่มเนื้อ/น้ำนมหรือปรับสัดส่วนเนื้อไขมัน", choices:["ถูกต้อง","ผิด"],
+   a:1,
+   why:"นอกจากใช้ในเจริญพันธุ์ ยังใช้ใน growth promotion, carcass quality, milk yield :contentReference[oaicite:42]{index=42}"},
+
+  {q:"ฮอร์โมน PMSG มีอีกชื่อว่า eCG (Equine chorionic gonadotropin) และใช้ในโปรโตคอล superovulation/estrus synchronization", choices:["ถูกต้อง","ผิด"],
+   a:0,
+   why:"PMSG หรือ eCG ใช้กระตุ้น follicle growth และ ovulation ในโปรโตคอลต่างๆ :contentReference[oaicite:44]{index=44}"},
+
+  {q:"แม้จะซิงโครไนซ์ estrus ได้ดีแล้ว แต่ไม่ได้หมายความว่าจะได้อัตราผสมหรืออัตราท้องสูงเสมอไป จึงต้องประเมินทั้ง conception และ lambing rate :contentReference[oaicite:45]{index=45}",
+   choices:["ถูกต้อง","ผิด"],
+   a:0,
+   why:"งานวิจัยพบว่ายังมี variation ใน conception/lambing แม้ estrus response สูง"},
+
+  {q:"โปรโตคอล hormonal ที่ดีสำหรับฟาร์มควรพิจารณาทั้ง season, body condition และ nutrition ก่อนใช้ฮอร์โมน", choices:["ถูกต้อง","ผิด"],
+   a:0,
+   why:"บทความระบุว่าความสำเร็จขึ้นกับ season, status และ method ของโปรโตคอล :contentReference[oaicite:46]{index=46}"}
+];   // เติมโจทย์ทีหลังได้
+const TF  = [
+  {q:"PGF₂α ใช้เพื่อทำให้ corpus luteum เสื่อมและใช้ในโปรแกรม estrus synchronization ได้", a:true,
+   why:"PGF₂α ทำให้ luteolysis เกิดขึ้น → วงรอบใหม่เริ่มต้นได้พร้อมกัน"},
+
+  {q:"Progesterone หรือ progestagen ใช้เพื่อยับยั้งการเป็นสัดในสัตว์เพศเมียได้", a:true,
+   why:"การให้ progesterone ต่อเนื่องจะกด LH/FSH → ยับยั้ง estrus และ ovulation ชั่วคราว"},
+
+  {q:"การใช้ฮอร์โมนในสัตว์เพื่อเพิ่มการเจริญเติบโต (growth promoter) ไม่มีความเสี่ยงด้านสารตกค้างในเนื้อ", a:false,
+   why:"มีความกังวลเรื่อง hormone residue ในอาหารและผลต่อผู้บริโภค"},
+
+  {q:"GnRH analogue สามารถใช้เพื่อกระตุ้นการตกไข่ได้ในโปรแกรม synchronization", a:true,
+   why:"GnRH หรือ analogue ใช้กระตุ้น LH surge ให้เกิด ovulation ได้ตามเวลาที่กำหนด"},
+
+  {q:"PMSG หรือ eCG ใช้เพื่อกระตุ้นการเจริญของ follicle และ superovulation", a:true,
+   why:"eCG มีฤทธิ์คล้าย FSH/LH → กระตุ้น follicle หลายใบให้โตพร้อมกัน"},
+
+  {q:"hCG สามารถใช้แทน LH เพื่อกระตุ้นการตกไข่ในสัตว์เพศเมียได้", a:true,
+   why:"hCG มีฤทธิ์ LH-like ทำให้ follicle ที่โตเต็มที่ตกไข่"},
+
+  {q:"การใช้ฮอร์โมนเพื่อซิงโครไนซ์การเป็นสัดไม่จำเป็นต้องคำนึงถึงภาวะโภชนาการหรือฤดูกาล", a:false,
+   why:"โภชนาการและฤดูกาลมีผลต่อการตอบสนองต่อฮอร์โมนอย่างมาก โดยเฉพาะใน seasonal breeders"},
+
+  {q:"การใช้ estrogen หรือ anabolic steroid ในโคเพื่อเพิ่ม growth rate ถูกห้ามในหลายประเทศ", a:true,
+   why:"ยุโรปและสหรัฐอเมริกาห้ามใช้ estrogenic growth promoter เพราะความเสี่ยงต่อสุขภาพมนุษย์"},
+
+  {q:"Melengestrol acetate (MGA) เป็น progestagen ที่ใช้ในโคเพื่อควบคุมการเป็นสัดหรือเพิ่มการเจริญเติบโต", a:true,
+   why:"MGA ใช้กดการเป็นสัดใน feedlot heifer และช่วยเพิ่ม feed efficiency"},
+
+  {q:"GnRH ถ้าให้แบบต่อเนื่องจะกระตุ้น LH/FSH อย่างต่อเนื่องเพิ่ม fertility", a:false,
+   why:"GnRH แบบต่อเนื่องทำให้ receptor downregulation → กด LH/FSH แทน"},
+
+  {q:"การใช้ PGF₂α จะมีประสิทธิภาพเฉพาะในช่วง luteal phase ที่มี CL ทำงานเท่านั้น", a:true,
+   why:"PGF₂α ทำให้ CL เสื่อมได้เฉพาะเมื่อ CL มี receptor ตอบสนอง (กลาง luteal phase)"},
+
+  {q:"ฮอร์โมนในกลุ่ม anabolic steroid เช่น testosterone analogue เพิ่ม lean:fat ratio ในซากสัตว์ได้", a:true,
+   why:"Anabolic steroids กระตุ้น protein synthesis → เพิ่มกล้ามเนื้อ ลดไขมัน"},
+
+  {q:"Oxytocin มีบทบาทสำคัญในการซิงโครไนซ์การตกไข่ในโปรแกรม estrus synchronization", a:false,
+   why:"Oxytocin ใช้ขับรกหรือบีบมดลูก ไม่ใช้ซิงโครไนซ์การตกไข่"},
+
+  {q:"การใช้ฮอร์โมนในสัตว์ต้องคำนึงถึงผลกระทบด้านจริยธรรมและสวัสดิภาพสัตว์", a:true,
+   why:"การใช้ฮอร์โมนควรอยู่ในขอบเขตที่ไม่กระทบต่อ welfare และ physiological balance ของสัตว์"},
+
+  {q:"Superovulation มักใช้ FSH หรือ eCG เพื่อกระตุ้น follicle หลายใบให้ตกไข่พร้อมกัน", a:true,
+   why:"FSH/eCG กระตุ้น follicle หลายใบให้ mature เพื่อเก็บไข่สำหรับ embryo transfer"},
+
+  {q:"การใช้ฮอร์โมนในฟาร์มช่วยลดระยะเวลาการผสมพันธุ์และสามารถทำ fixed-time AI ได้", a:true,
+   why:"การซิงโครไนซ์ estrus ด้วยฮอร์โมนทำให้สามารถกำหนดเวลาผสมเทียมได้แน่นอน"},
+
+  {q:"Prostaglandin และ progesterone ใช้ในโปรโตคอลเดียวกันไม่ได้", a:false,
+   why:"โปรโตคอลซิงโครไนซ์หลายแบบใช้ progestagen device ร่วมกับ PGF₂α เพื่อเร่งการเริ่มรอบใหม่"},
+
+  {q:"การใช้ฮอร์โมนเพื่อควบคุมการเจริญพันธุ์ในสัตว์ไม่มีผลต่อพฤติกรรมทางเพศเลย", a:false,
+   why:"ฮอร์โมนเพศเกี่ยวข้องกับพฤติกรรมการเป็นสัดและการผสมพันธุ์โดยตรง"},
+
+  {q:"ในสุกร ตัวอ่อนหลั่ง estrogen เพื่อยับยั้ง luteolysis โดยเปลี่ยนทิศทางการหลั่ง PGF₂α จาก endocrine เป็น exocrine", a:true,
+   why:"Estrogen จาก embryo เปลี่ยนเส้นทาง PGF₂α → ไม่ถึง CL → CL ไม่เสื่อม"},
+
+  {q:"การใช้ฮอร์โมนในสัตว์ต้องปฏิบัติตามข้อกำหนด residue และ withdrawal time เพื่อความปลอดภัยของผู้บริโภค", a:true,
+   why:"ต้องคำนึงถึงระยะหยุดยาและค่าตกค้างก่อนส่งผลผลิตสู่ตลาดเพื่อความปลอดภัยทางอาหาร"}
+];
+
+/***********************
+ * UI – Tabs
+ ***********************/
+const tabsEl = document.getElementById('tabs');
+const views = [
+  {id:'mode-mcq', title:'🧩 MCQ'},
+  {id:'mode-tf',  title:'✅ True / False'}
+];
+let activeTab = views[0].id;
+
+function renderTabs(){
+  tabsEl.innerHTML = '';
+  views.forEach(v=>{
+    const b = document.createElement('button');
+    b.className = 'tab' + (v.id===activeTab ? ' active' : '');
+    b.textContent = v.title;
+    b.onclick = ()=>{ activeTab = v.id; updateView(); };
+    tabsEl.appendChild(b);
+  });
+}
+
+function updateView(){
+  views.forEach(v=>{
+    const s = document.getElementById(v.id);
+    if(!s) return;
+    if(v.id===activeTab){ s.classList.remove('hide'); }
+    else{ s.classList.add('hide'); }
+  });
+  renderTabs();
+}
+
+renderTabs();
+
+// ✅ อัปเดตชื่อแท็บให้ตรง index และไม่อ้างเกิน
+views[0].title = `🧩 MCQ (${MCQ.length} ข้อ)`;
+views[1].title = `✅ True / False (${TF.length} ข้อ)`;
+renderTabs();
+updateView();
+
+/***********************
+ * Mode – MCQ
+ ***********************/
+(function(){
+  const host=document.getElementById('mode-mcq');
+  let order = shuffle(MCQ.map((_,i)=>i));
+  let i=0, score=0;
+  const total = order.length;
+
+  // กันกรณีไม่มีข้อ
+  if(total===0){
+    host.innerHTML = `<div class="qcard">ยังไม่มีโจทย์ MCQ</div>`;
+    return;
+  }
+
+  const hud=document.createElement('div'); hud.className='scorebox';
+  hud.innerHTML = `<div class="badge" id="mcqProg">ข้อ 1 / ${total}</div>
+                   <div class="badge" id="mcqScore">คะแนน 0</div>
+                   <button class="secondary" id="mcqRestart">เริ่มใหม่/สุ่มใหม่</button>`;
+  host.appendChild(hud);
+
+  const qc=document.createElement('div'); qc.className='qcard'; host.appendChild(qc);
+
+  function renderQ(){
+    const item = MCQ[order[i]];
+    document.getElementById('mcqProg').textContent = `ข้อ ${i+1} / ${total}`;
+    qc.innerHTML = `<div><b>Q${i+1}.</b> ${item.q}</div>`;
+    const box=document.createElement('div'); box.className='choices'; qc.appendChild(box);
+    const shuffledChoices = shuffle(item.choices.map((c,idx)=>({c,idx})));
+    let locked=false;
+
+    shuffledChoices.forEach(({c,idx})=>{
+      const div=document.createElement('div');
+      div.className='choice'; div.innerHTML=c; box.appendChild(div);
+      div.onclick=()=>{
+        if(locked) return; locked=true;
+        const isCorrect = idx===item.a;
+        if(isCorrect){div.classList.add('correct'); score++;}
+        else{div.classList.add('wrong');}
+        // ไฮไลต์ตัวถูก
+        [...box.children].forEach(el=>{
+          const originalIndex=item.choices.indexOf(el.innerHTML);
+          if(originalIndex===item.a) el.classList.add('correct');
+        });
+        // เฉลย
+        const exp=document.createElement('div'); exp.className='answer';
+        exp.innerHTML = `<b>เฉลย:</b> ${item.choices[item.a]}<br><span class="muted">เหตุผล:</span> ${item.why||'-'}`;
+        qc.appendChild(exp);
+        // ปุ่มถัดไป
+        const nx=document.createElement('div'); nx.style.marginTop='10px';
+        nx.innerHTML = `<button id="btnNext">ถัดไป</button>`; qc.appendChild(nx);
+        document.getElementById('mcqScore').textContent = `คะแนน ${score}`;
+        document.getElementById('btnNext').onclick = ()=>{
+          i++; if(i>=total){
+            qc.innerHTML = `<div class="row"><div class="badge">จบชุด MCQ</div><div class="badge">คะแนนรวม: ${score} / ${total}</div></div>`;
+          } else { renderQ(); }
+        };
+      };
+    });
+  }
+
+  document.getElementById('mcqRestart').onclick=()=>{
+    order = shuffle(MCQ.map((_,i)=>i)); i=0; score=0;
+    document.getElementById('mcqScore').textContent='คะแนน 0';
+    renderQ();
+  };
+
+  renderQ();
+})();
+
+/***********************
+ * Mode – True / False
+ ***********************/
+(function(){
+  const host=document.getElementById('mode-tf');
+  let order = shuffle(TF.map((_,i)=>i));
+  let i=0, score=0;
+  const total = order.length;
+
+  if(total===0){
+    host.innerHTML = `<div class="qcard">ยังไม่มีโจทย์ True/False</div>`;
+    return;
+  }
+
+  const hud=document.createElement('div'); hud.className='scorebox';
+  hud.innerHTML = `<div class="badge" id="tfProg">ข้อ 1 / ${total}</div>
+                   <div class="badge" id="tfScore">คะแนน 0</div>
+                   <button class="secondary" id="tfRestart">เริ่มใหม่/สุ่มใหม่</button>`;
+  host.appendChild(hud);
+
+  const qc=document.createElement('div'); qc.className='qcard'; host.appendChild(qc);
+
+  function renderQ(){
+    const item=TF[order[i]];
+    document.getElementById('tfProg').textContent=`ข้อ ${i+1} / ${total}`;
+    qc.innerHTML = `<div><b>Q${i+1}.</b> ${item.q}</div>`;
+
+    const btnRow=document.createElement('div'); btnRow.style.display='flex'; btnRow.style.gap='8px';
+    const btnT=document.createElement('button'); btnT.textContent='ถูก (True)';
+    const btnF=document.createElement('button'); btnF.textContent='ผิด (False)'; btnF.className='secondary';
+    btnRow.append(btnT,btnF); qc.appendChild(btnRow);
+
+    let locked=false;
+    function mark(ans){
+      if(locked) return; locked=true;
+      const cor = item.a===ans; if(cor) score++;
+      document.getElementById('tfScore').textContent=`คะแนน ${score}`;
+      const exp=document.createElement('div'); exp.className='answer';
+      exp.innerHTML=`<b>เฉลย:</b> ${item.a?'<span class="ok">True</span>':'<span class="ng">False</span>'} · <span class="muted">เหตุผล:</span> ${item.why||'-'}`;
+      qc.appendChild(exp);
+      const nx=document.createElement('div'); nx.style.marginTop='10px'; nx.innerHTML='<button id="tfNext">ถัดไป</button>'; qc.appendChild(nx);
+      document.getElementById('tfNext').onclick=()=>{
+        i++; if(i>=total){
+          qc.innerHTML = `<div class="row"><div class="badge">จบชุด True/False</div><div class="badge">คะแนนรวม: ${score} / ${total}</div></div>`;
+        } else { renderQ(); }
+      };
+    }
+    btnT.onclick=()=>mark(true); btnF.onclick=()=>mark(false);
+  }
+
+  document.getElementById('tfRestart').onclick=()=>{
+    order = shuffle(TF.map((_,i)=>i)); i=0; score=0;
+    document.getElementById('tfScore').textContent='คะแนน 0';
+    renderQ();
+  };
+
+  renderQ();
+})();
+</script>
+
+</body>
+</html>
