@@ -83,9 +83,7 @@
 <script>
 function shuffle(arr){ const a=arr.slice(); for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]} return a; }
 
-/***********************
- * MCQ / TF DATA
- ***********************/
+/* 1) DATA – เติม MCQ/TF ให้อยู่เหนือ init */
 const MCQ = [
   {q:"ฮอร์โมนใด ‘ลด’ ระดับ Ca²⁺ ในเลือดโดยตรงมากที่สุด?",
    choices:["Parathyroid hormone (PTH)","Calcitonin","Vitamin D (Calcitriol)","PTHrP","Aldosterone"],
@@ -480,9 +478,7 @@ const TF  = [
    why:"macrophage ใน granuloma สร้าง 1α-hydroxylase → calcitriol↑ → Ca↑"}
 ];
 
-/***********************
- * UI – Tabs
- ***********************/
+/* 2) Tabs */
 const tabsEl = document.getElementById('tabs');
 const views = [
   {id:'mode-mcq', title:'🧩 MCQ'},
@@ -490,45 +486,43 @@ const views = [
 ];
 let activeTab = views[0].id;
 
+function updateTabTitles(){
+  views[0].title = `🧩 MCQ (${MCQ.length} ข้อ)`;
+  views[1].title = `✅ True / False (${TF.length} ข้อ)`;
+}
 function renderTabs(){
   tabsEl.innerHTML = '';
   views.forEach(v=>{
     const b = document.createElement('button');
     b.className = 'tab' + (v.id===activeTab ? ' active' : '');
     b.textContent = v.title;
-    b.onclick = ()=>{ activeTab = v.id; updateView(); };
+    b.onclick = ()=>{ activeTab = v.id; updateView(true); };
     tabsEl.appendChild(b);
   });
 }
-
-function updateView(){
+function updateView(rebuild=false){
   views.forEach(v=>{
     const s = document.getElementById(v.id);
     if(!s) return;
     if(v.id===activeTab){ s.classList.remove('hide'); }
     else{ s.classList.add('hide'); }
   });
+  if(rebuild){
+    if(activeTab==='mode-mcq') initMCQ();
+    if(activeTab==='mode-tf')  initTF();
+  }
+  updateTabTitles();
   renderTabs();
 }
 
-renderTabs();
-
-// ✅ อัปเดตชื่อแท็บให้ตรง index และไม่อ้างเกิน
-views[0].title = `🧩 MCQ (${MCQ.length} ข้อ)`;
-views[1].title = `✅ True / False (${TF.length} ข้อ)`;
-renderTabs();
-updateView();
-
-/***********************
- * Mode – MCQ
- ***********************/
-(function(){
+/* 3) MCQ renderer (เรียกซ้ำได้) */
+function initMCQ(){
   const host=document.getElementById('mode-mcq');
+  host.innerHTML = '';  // เคลียร์ก่อน
   let order = shuffle(MCQ.map((_,i)=>i));
   let i=0, score=0;
   const total = order.length;
 
-  // กันกรณีไม่มีข้อ
   if(total===0){
     host.innerHTML = `<div class="qcard">ยังไม่มีโจทย์ MCQ</div>`;
     return;
@@ -558,16 +552,13 @@ updateView();
         const isCorrect = idx===item.a;
         if(isCorrect){div.classList.add('correct'); score++;}
         else{div.classList.add('wrong');}
-        // ไฮไลต์ตัวถูก
         [...box.children].forEach(el=>{
           const originalIndex=item.choices.indexOf(el.innerHTML);
           if(originalIndex===item.a) el.classList.add('correct');
         });
-        // เฉลย
         const exp=document.createElement('div'); exp.className='answer';
         exp.innerHTML = `<b>เฉลย:</b> ${item.choices[item.a]}<br><span class="muted">เหตุผล:</span> ${item.why||'-'}`;
         qc.appendChild(exp);
-        // ปุ่มถัดไป
         const nx=document.createElement('div'); nx.style.marginTop='10px';
         nx.innerHTML = `<button id="btnNext">ถัดไป</button>`; qc.appendChild(nx);
         document.getElementById('mcqScore').textContent = `คะแนน ${score}`;
@@ -587,13 +578,12 @@ updateView();
   };
 
   renderQ();
-})();
+}
 
-/***********************
- * Mode – True / False
- ***********************/
-(function(){
+/* 4) TF renderer (เรียกซ้ำได้) */
+function initTF(){
   const host=document.getElementById('mode-tf');
+  host.innerHTML=''; // เคลียร์ก่อน
   let order = shuffle(TF.map((_,i)=>i));
   let i=0, score=0;
   const total = order.length;
@@ -646,7 +636,24 @@ updateView();
   };
 
   renderQ();
-})();
+}
+
+/* 5) ฟังก์ชันสาธารณะ: เรียกหลังเติมข้อสอบ */
+function refreshQuizzes(){
+  updateTabTitles();
+  renderTabs();
+  initMCQ();
+  initTF();
+  updateView(); // รีเฟรช state การซ่อน/แสดง
+}
+
+/* เริ่มต้นรอบแรก (กรณีมีข้อแล้ว) */
+refreshQuizzes();
+
+/* ถ้าคุณเติมข้อ TF ภายหลัง (เช่นท้ายไฟล์): 
+   TF.push({q:'...', a:true, why:'...'});
+   refreshQuizzes();  // ← เรียกอีกรอบ เพื่อให้ TF โผล่
+*/
 </script>
 
 </body>
