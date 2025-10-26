@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Physiology of calcium regulation – ชุดแบบทดสอบ (TH)</title>
+<style>
+  :root{--bg:#0f172a;--card:#111827;--ink:#e5e7eb;--muted:#94a3b8;--accent:#22d3ee;--good:#22c55e;--bad:#ef4444;--warn:#f59e0b}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Helvetica,Arial,sans-serif;background:linear-gradient(180deg,#0b1220,#0e1526);color:var(--ink)}
+  header{position:sticky;top:0;background:#0b1220cc;backdrop-filter:blur(6px);border-bottom:1px solid #1f2937;z-index:10}
+  .wrap{max-width:1100px;margin:0 auto;padding:18px}
+  h1{font-size:clamp(20px,2.8vw,34px);margin:8px 0 2px}
+  .tabs{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+  .tab{padding:10px 14px;border:1px solid #1f2937;border-radius:10px;background:#0b1324;color:#cbd5e1;cursor:pointer}
+  .tab.active{border-color:#0ea5e9;background:#0b2436;box-shadow:0 0 0 2px #0ea5e933 inset;color:#e2e8f0}
+  .card{background:var(--card);border:1px solid #1f2937;border-radius:14px;padding:18px;margin:16px 0;box-shadow:0 10px 30px #0004}
+  .grid{display:grid;gap:12px}
+  .grid.cols-2{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+  .muted{color:var(--muted)}
+  select,button,input[type="radio"]{accent-color:#06b6d4}
+  select{width:100%;padding:8px 10px;border-radius:10px;border:1px solid #334155;background:#0b1320;color:#e2e8f0}
+  button{background:#0ea5e9;border:none;padding:10px 14px;border-radius:10px;color:#001018;font-weight:700;cursor:pointer}
+  button.secondary{background:#0b1728;color:#e2e8f0;border:1px solid #1f2937}
+  .pill{display:inline-block;padding:4px 10px;border-radius:999px;border:1px solid #1f2937;background:#0b1320;color:#a5b4fc;font-size:12px}
+  .row{display:flex;align-items:center;gap:8px}
+  .k{font-weight:700;color:#67e8f9}
+  .ok{color:var(--good)}
+  .ng{color:var(--bad)}
+  .warn{color:var(--warn)}
+  .qcard{border:1px dashed #334155;padding:14px;border-radius:12px}
+  .choices{display:grid;gap:8px;margin-top:10px}
+  .choice{padding:10px;border:1px solid #293241;border-radius:10px;cursor:pointer;background:#0a1120}
+  .choice.correct{border-color:#14532d;background:#052014}
+  .choice.wrong{border-color:#7f1d1d;background:#1a0b0b}
+  .hide{display:none}
+  .tag{font-size:11px;opacity:.9;color:#a5b4fc;margin-left:6px}
+  .answer{border-left:3px solid #334155;padding-left:10px;margin-top:8px;color:#cbd5e1}
+  .inline-kbd{display:inline-block;border:1px solid #334155;border-bottom-width:3px;padding:2px 6px;border-radius:6px;background:#0b1320;color:#e5e7eb;font:600 12px/1 system-ui}
+  .siteGrid{display:grid;grid-template-columns:1.6fr 1fr;gap:10px;align-items:center}
+  .siteGrid h4{margin:0}
+  .scorebox{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+  .badge{padding:6px 10px;border-radius:10px;background:#062334;border:1px solid #0ea5e9;color:#7dd3fc}
+  .mini{font-size:12px}
+  footer{opacity:.7;text-align:center;padding:26px}
+  details{background:#0b1320;border:1px solid #1f2937;border-radius:10px;padding:8px}
+  summary{cursor:pointer;color:#7dd3fc}
+</style>
+</head>
+<body>
+<header>
+  <!-- ปุ่มกลับหน้าแรก (วางไว้ใต้ <header> หรือบนสุดของ <main>) -->
+<div style="margin:10px 0;">
+  <a href="index.html" 
+     style="display:inline-block;padding:8px 14px;background:#0b2436;
+            border:1px solid #0ea5e9;border-radius:10px;
+            color:#7dd3fc;text-decoration:none;font-weight:600;">
+    🏠กลับไปหน้าแรก
+  </a>
+</div>
+
+  <div class="wrap">
+    <h1>Phyiology of calcium regulation</h1>
+    <div class="muted">โหมด: · <span class="pill">MCQ</span> · <span class="pill">True/False</span></div>
+    <div class="tabs" id="tabs"></div>
+  </div>
+</header>
+<main class="wrap">
+  <section id="mode-mcq" class="card hide"></section>
+  <section id="mode-tf" class="card hide"></section>
+  <section class="card">
+    <details>
+      <summary>📝 วิธีใช้</summary>
+      <ul>
+        <li><b>MCQ</b>: ตอบทีละข้อ สุ่มลำดับทุกครั้ง ต้องคลิกคำตอบก่อน จึงเห็นเฉลยและไปข้อถัดไป</li>
+        <li><b>True/False</b>: แนวเดียวกับ MCQ</li>
+        <li>คง <i>technical terms</i> ภาษาอังกฤษ</li>
+      </ul>
+    </details>
+  </section>
+</main>
+<footer class="muted">© 2025 – Vet Physiology Drill • Calcium regulation · Reproduction · Shock
+<script>
+function shuffle(arr){ const a=arr.slice(); for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]} return a; }
+
+/***********************
+ * Physiology of Shock – MCQ (40 ข้อ)
+ * ฟอร์แมทเดียวกับที่เคยใช้:
+ * { q:"...", choices:["A","B","C","D"], a:เลขช้อยส์ที่ถูก (0-3), why:"คำอธิบายสั้น" }
+ ***********************/
+const MCQ = [
+  {q:"ข้อใดต่อไปนี้ ‘ไม่ใช่’ ลักษณะอาการที่พบในภาวะ septic shock",
+   choices:["Respiratory rate เพิ่มขึ้น","White blood cells เพิ่มขึ้น","Heart rate เพิ่มขึ้น","Venous return เพิ่มขึ้น"],
+   a:3,
+   why:"septic shock ทำให้หลอดเลือดขยาย เลือดคั่งส่วนปลาย → venous return ลดลง"},
+
+  {q:"สัตว์เริ่มแสดงอาการทางคลินิกได้ว่ากำลังเกิดภาวะช็อกเมื่อเสียเลือดไปประมาณกี่เปอร์เซ็นต์",
+   choices:["10%","25%","50%","70%"],
+   a:2,
+   why:"อาการชัดเจนเมื่อสูญเสียเลือด ~50% ของปริมาตรไหลเวียน"},
+
+  {q:"การเปลี่ยนแปลงของ effective circulating volume (ECV) ในภาวะช็อกคือ",
+   choices:["เพิ่มขึ้น","ลดลง","ไม่เปลี่ยนแปลง","ถูกทุกข้อ"],
+   a:1,
+   why:"ECV ลดลงจากปริมาตรเลือดมีผลใช้ได้จริงน้อยลงและการไหลเวียนไร้ประสิทธิภาพ"},
+
+  {q:"ข้อใด ‘ไม่ควรพบ’ ใน neurogenic shock",
+   choices:["Intravascular volume increased","Venous return decreased","Vasodilation","Sympathetic activity increased"],
+   a:3,
+   why:"neurogenic shock = สูญเสีย sympathetic tone → กิจกรรมซิมพาเทติกลดลง ไม่เพิ่ม"},
+
+  {q:"กลไกใดสำคัญที่สุดใน 30 วินาทีแรกของภาวะช็อก",
+   choices:["CNS ischemic response","RAAS","ADH","Baroreceptor reflexes"],
+   a:3,
+   why:"baroreceptor reflex ตอบสนองเร็วที่สุดเพื่อคงความดัน"},
+
+  {q:"ส่วนของ homeostasis ที่ทำหน้าที่เป็น ‘sensor’ ตรวจจับความดันเลือดคือ",
+   choices:["Baroreceptors","Control center","Effector","CNS cortex"],
+   a:0,
+   why:"baroreceptor ที่ carotid sinus/aortic arch ตรวจจับการเปลี่ยนแปลงของความดัน"},
+
+  {q:"ข้อใดมีโอกาสน้อยที่สุดที่จะพบใน distributive shock",
+   choices:["Vasodilatation","Body temperature increase","Bronchodilation","Increase vascular permeability"],
+   a:2,
+   why:"anaphylaxis ทำให้หลอดลมหด (bronchoconstriction) ไม่ใช่ขยาย"},
+
+  {q:"เมื่อ baroreceptors ตรวจพบว่าความดันเลือดลดลง ร่างกายตอบสนองอย่างไร",
+   choices:["Parasympathetic เพิ่มขึ้น","Sympathetic เพิ่มขึ้น","Heart rate ลดลง","Blood pressure ลดลง"],
+   a:1,
+   why:"กระตุ้นซิมพาเทติก → HR↑ contractility↑ vasoconstriction↑"},
+
+  {q:"อาการใดพบน้อยที่สุดในภาวะช็อก",
+   choices:["ความดันเลือดสูง (hypertension)","ชีพจรอ่อนแรง","ปัสสาวะเข้มข้น","หัวใจเต้นเร็ว"],
+   a:0,
+   why:"shock โดยทั่วไปสัมพันธ์กับความดันต่ำไม่ใช่สูง"},
+
+  {q:"ข้อใดจัดเป็น effector ในการควบคุมสมดุลระดับน้ำตาลในเลือด",
+   choices:["ตับ","อินซูลิน","กลูโคส","กลูคากอน"],
+   a:0,
+   why:"ตับเป็นอวัยวะผู้ปฏิบัติ (effector) เก็บ/ปล่อยกลูโคสตามสัญญาณฮอร์โมน"},
+
+  {q:"เมื่อเกิดภาวะช็อก กลไกใดช่วยให้ปริมาตรเลือดกลับสู่ปกติ",
+   choices:["ลดปริมาณปัสสาวะ","กระหายน้ำ","ดูดซึมจากลำไส้","อยากกินเค็ม"],
+   a:0,
+   why:"ADH ↑ → ดูดน้ำกลับมากขึ้น ปัสสาวะลดลง เพิ่ม BV เร็วสุด"},
+
+  {q:"ข้อใด ‘ไม่ใช่’ สาเหตุของ cardiogenic shock",
+   choices:["Dilated cardiomyopathy","Bradyarrhythmias","Cardiac tamponade","Myocarditis"],
+   a:2,
+   why:"tamponade เป็น obstructive shock (กีดขวางการไหลเวียน) ไม่ใช่ pump failure โดยตรง"},
+
+  {q:"ข้อใด ‘ไม่ทำให้เกิด’ obstructive shock",
+   choices:["Pneumothorax","Pulmonary emphysema","Cardiac tamponade","Pulmonary embolism"],
+   a:1,
+   why:"emphysema เป็นโรคปอดเรื้อรัง ไม่ใช่การอุดตันเฉียบพลันของการไหลเวียน"},
+
+  {q:"ข้อใดเป็นกลไกที่เกิดในระยะ non-progressive shock",
+   choices:["Generalized cellular deterioration","Cardiac depression","Increased capillary permeability","Renin-Angiotensin-Aldosterone system stimulation"],
+   a:3,
+   why:"ระยะชดเชยใช้ RAAS/ADH/baroreflex คุมความดันและ BV"},
+
+  {q:"ข้อใด ‘ไม่จัดเป็น’ ช็อกจากการเพิ่ม venous capacitance",
+   choices:["Neurogenic shock","Septic shock","Anaphylactic shock","Hemorrhagic shock"],
+   a:3,
+   why:"hemorrhagic คือ hypovolemic จากสูญเสียปริมาตร ไม่ใช่หลอดเลือดขยาย"},
+
+  {q:"ภาวะแทรกซ้อนระบบไตที่พบบ่อยหลังช็อก",
+   choices:["GFR increase","Renal tubular necrosis","Renal hypertrophy","นิ่วในไต"],
+   a:1,
+   why:"ขาดเลือดทำให้ท่อไตตายเฉียบพลัน → acute renal failure"},
+
+  {q:"ลักษณะสำคัญของ DIC",
+   choices:["มีลิ่มเลือดเล็ก ๆ ในหลอดเลือดฝอย","เกล็ดเลือดสูง","มีแต่เลือดออกอย่างเดียว","หลอดเลือดหดตัวทั่วไป"],
+   a:0,
+   why:"เกิดไมโครทรอมบัส + ใช้ปัจจัยการแข็งตัวมาก → เลือดออกพร้อมกัน"},
+
+  {q:"ข้อใดเป็นส่วนหนึ่งของ ‘vicious circle’ ใน progressive shock",
+   choices:["Sympathetic activity increase","Interstitial fluid shift","Thrombosis of minute vessels","CNS ischemic response"],
+   a:2,
+   why:"ไมโครทรอมบัสทำให้ ischemia แย่ลง วนลูปถดถอย"},
+
+  {q:"ข้อใด ‘ไม่ใช่’ สาเหตุของ hypovolemic shock",
+   choices:["เสียเลือดมาก","แผลไฟไหม้","ท้องเสียอย่างหนัก","ถูกผึ้งต่อย"],
+   a:3,
+   why:"ผึ้งต่อย → anaphylactic (distributive) shock"},
+
+  {q:"ช็อกชนิดใดเหมาะกับการให้ยา sympathomimetic มากที่สุด",
+   choices:["Hypovolemic","Obstructive","Cardiogenic","Neurogenic shock"],
+   a:3,
+   why:"neurogenic = loss sympathetic tone → เพิ่ม tone ด้วยยาได้ผล"},
+
+  {q:"กรณีจมน้ำพุร้อนโดยไม่เตรียมร่างกาย เหมาะสมกับช็อกชนิดใดมากที่สุด",
+   choices:["Hypovolemic","Septic","Anaphylactic","Distributive shock"],
+   a:3,
+   why:"ความร้อนสูงทำให้หลอดเลือดขยายทั่วร่าง → distributive"},
+
+  {q:"ความหมายของ ‘shock’ ตรงกับข้อใดมากที่สุด",
+   choices:["ความดันเลือดสูงเฉียบพลัน","เนื้อเยื่อได้รับเลือดไม่พอ (inadequate tissue perfusion)","ความตื่นตกใจ","ภาวะออกซิเจนในเลือดต่ำ"],
+   a:1,
+   why:"นิยามหลักคือ perfusion ไม่เพียงพอระดับเนื้อเยื่อ"},
+
+  {q:"ข้อใดเป็นสาเหตุของ cardiogenic shock",
+   choices:["Pneumothorax","Pulmonary embolism","Cardiac tamponade","Ventricular aneurysm"],
+   a:3,
+   why:"ผนังห้องล่างโป่ง → บีบตัวแย่ → pump failure"},
+
+  {q:"สัตว์ในภาวะช็อกที่ยังรักษาให้รอดได้ มักอยู่ในระยะใด",
+   choices:["Progressive stage","Non-progressive stage","Irreversible stage","ไม่มีข้อถูก"],
+   a:0,
+   why:"progressive ยังพอแก้ไขได้ หากช้า → irreversible"},
+
+  {q:"ข้อใด ‘ไม่ใช่’ ภาวะแทรกซ้อนระบบหายใจจากช็อก",
+   choices:["Lung stiffness","Increase respiratory rate","Decrease pulmonary capillary permeability","Impaired gas exchange"],
+   a:2,
+   why:"ARDS → permeability เพิ่ม ไม่ใช่ลด"},
+
+  {q:"ข้อใดต่อไปนี้ ‘ไม่ใช่’ negative feedback mechanism",
+   choices:["RAAS","ADH","Increased capillary permeability","Baroreceptor reflex"],
+   a:2,
+   why:"capillary leak เป็นพยาธิสภาพไม่ใช่ feedback"},
+
+  {q:"ข้อใด ‘ไม่ใช่’ สาเหตุของ neurogenic shock",
+   choices:["ได้รับยาสลบ","ได้รับยา opioid ขนาดสูงจนกดศูนย์ประสาท","อุบัติเหตุไขสันหลัง","ออกกำลังกายอย่างหนักมาก"],
+   a:3,
+   why:"การออกกำลังไม่ทำให้สูญเสีย sympathetic tone"},
+
+  {q:"เกี่ยวกับสรีรวิทยาของช็อก ข้อใด ‘ไม่ถูกต้อง’",
+   choices:["ผลคือ perfusion ลดระดับเซลล์","ความดันเลือดเป็นตัวแปรสำคัญที่สัมพันธ์กับ tissue perfusion","การเพิ่มขึ้นของ ECV เป็นสาเหตุหนึ่งที่ทำให้เกิดช็อก","ช็อกมีหลายสาเหตุแต่ลงท้ายด้วยการไหลเวียนไปเลี้ยงเนื้อเยื่อไม่พอ"],
+   a:2,
+   why:"ECV ลดลง ไม่ใช่เพิ่ม"},
+
+  {q:"ข้อใดคือสัญญาณเด่นที่ ‘เฉพาะ’ มากขึ้นใน septic shock",
+   choices:["Respiratory rate เพิ่ม","Body temperature เพิ่ม","Venous return เพิ่ม","Heart rate ลด"],
+   a:1,
+   why:"ไข้สูงจาก endotoxin/cytokine เป็นลักษณะเด่น"},
+
+  {q:"ปัจจัยสำคัญที่ทำให้เกิด distributive shock",
+   choices:["Tachycardia","Arteriovenous shunting","Severe blood loss","Pruritus"],
+   a:1,
+   why:"เกิด shunt และ vasodilation ทำให้ perfusion ลด"},
+
+  {q:"ใน hypovolemic shock ร่างกายจะลดการไหลเวียนไปยังอวัยวะใดก่อน",
+   choices:["กล้ามเนื้อ","สมอง","ผิวหนัง","ปอด"],
+   a:2,
+   why:"เลือดถูกสงวนให้หัวใจ/สมอง ผิวหนังถูกลดก่อน"},
+
+  {q:"ยาที่ควรใช้ใน neurogenic shock",
+   choices:["ให้ plasma","ให้ fluid","ให้ glucocorticoids","ให้ออกซิเจนอย่างเดียว"],
+   a:2,
+   why:"ช่วยลดบวมไขสันหลังและคง vascular tone"},
+
+  {q:"อาการพบได้ใน anaphylactic shock",
+   choices:["Vasoconstriction เด่น","Urticaria และ angioedema","Vascular permeability ลดลง","การสร้างเมือกลดลง"],
+   a:1,
+   why:"histamine → ผื่น/บวม/หลอดลมตีบ/vascular leak"},
+
+  {q:"ปัจจัยใด ‘ไม่มีผลโดยตรง’ ต่อ mean arterial pressure (mABP)",
+   choices:["Cardiac contractility","Sympathetic vasomotor tone","Venous capacitance","ไม่มีข้อใดที่ไม่เกี่ยวข้อง"],
+   a:3,
+   why:"mABP = CO×TPR → ทั้งสามปัจจัยมีผลต่อ CO/TPR"},
+
+  {q:"สัตว์ป่วยส่วนใหญ่ที่เกิดช็อกจะเกิดภาวะกรดเกิน (acidosis) เสมอ",
+   choices:["ถูกต้อง","ไม่ถูกต้อง"],
+   a:1,
+   why:"acidosis เด่นในระยะ progressive/irreversible ไม่ใช่เสมอทุกกรณี"},
+  
+  {q:"หลอดเลือดส่วนใดควบคุมปริมาณเลือดเข้าสู่เนื้อเยื่อมากที่สุด",
+   choices:["Capillary","Artery","Arteriole","Vein"],
+   a:2,
+   why:"arteriole เป็น resistance vessels หลัก"},
+
+  {q:"ในระยะ progressive shock ร่างกายพยายามคงตัวแปรใดให้ใกล้ปกติที่สุด",
+   choices:["Total peripheral resistance","Mean arterial blood pressure","Blood volume","Cardiac output"],
+   a:1,
+   why:"กลไกต่าง ๆ มุ่งคง mABP เพื่อรักษา perfusion อวัยวะสำคัญ"},
+
+  {q:"ข้อใด ‘ไม่พบ’ ใน cardiogenic shock จากการบีบตัวของห้องล่างซ้ายบกพร่อง",
+   choices:["Left atrial pressure เพิ่ม","Left ventricular filling pressure เพิ่ม","Pulmonary capillary pressure ลดลง","Pulmonary edema"],
+   a:2,
+   why:"หัวใจซ้ายล้มเหลวทำให้ความดันฝอยปอดเพิ่ม ไม่ใช่ลด"},
+
+  {q:"ข้อใด ‘ไม่ใช่’ กลไกชดเชยที่พบได้ใน progressive stage",
+   choices:["Increased capillary permeability","Baroreceptor reflexes","CNS ischemic response","Increased parasympathetic activity"],
+   a:3,
+   why:"ระยะนี้ต้องการซิมพาเทติก ไม่ใช่พาราซิมพาเทติก"},
+
+  {q:"สัตว์ส่วนใหญ่ที่เกิดช็อกมีกรดเกินเพราะเหตุใด",
+   choices:["การคั่งของกรดแลคติกจากภาวะขาดออกซิเจนของเนื้อเยื่อ","การคั่งด่าง","ไบคาร์บอเนตเพิ่มสูง","ขับ CO₂ ออกมากเกินไป"],
+   a:0,
+   why:"anaerobic metabolism → lactic acidosis เมื่อ perfusion ไม่พอ"}
+];
+
+/* หากต้องการแสดงจำนวนข้อบน UI:
+   views[1].title = `🧩 MCQ (${MCQ.length} ข้อ)`;
+*/
+
+const TF  = [
+];
+
+/* 2) Tabs */
+const tabsEl = document.getElementById('tabs');
+const views = [
+  {id:'mode-mcq', title:'🧩 MCQ'},
+  {id:'mode-tf',  title:'✅ True / False'}
+];
+let activeTab = views[0].id;
+
+function updateTabTitles(){
+  views[0].title = `🧩 MCQ (${MCQ.length} ข้อ)`;
+  views[1].title = `✅ True / False (${TF.length} ข้อ)`;
+}
+function renderTabs(){
+  tabsEl.innerHTML = '';
+  views.forEach(v=>{
+    const b = document.createElement('button');
+    b.className = 'tab' + (v.id===activeTab ? ' active' : '');
+    b.textContent = v.title;
+    b.onclick = ()=>{ activeTab = v.id; updateView(true); };
+    tabsEl.appendChild(b);
+  });
+}
+function updateView(rebuild=false){
+  views.forEach(v=>{
+    const s = document.getElementById(v.id);
+    if(!s) return;
+    if(v.id===activeTab){ s.classList.remove('hide'); }
+    else{ s.classList.add('hide'); }
+  });
+  if(rebuild){
+    if(activeTab==='mode-mcq') initMCQ();
+    if(activeTab==='mode-tf')  initTF();
+  }
+  updateTabTitles();
+  renderTabs();
+}
+
+/* 3) MCQ renderer (เรียกซ้ำได้) */
+function initMCQ(){
+  const host=document.getElementById('mode-mcq');
+  host.innerHTML = '';  // เคลียร์ก่อน
+  let order = shuffle(MCQ.map((_,i)=>i));
+  let i=0, score=0;
+  const total = order.length;
+
+  if(total===0){
+    host.innerHTML = `<div class="qcard">ยังไม่มีโจทย์ MCQ</div>`;
+    return;
+  }
+
+  const hud=document.createElement('div'); hud.className='scorebox';
+  hud.innerHTML = `<div class="badge" id="mcqProg">ข้อ 1 / ${total}</div>
+                   <div class="badge" id="mcqScore">คะแนน 0</div>
+                   <button class="secondary" id="mcqRestart">เริ่มใหม่/สุ่มใหม่</button>`;
+  host.appendChild(hud);
+
+  const qc=document.createElement('div'); qc.className='qcard'; host.appendChild(qc);
+
+  function renderQ(){
+    const item = MCQ[order[i]];
+    document.getElementById('mcqProg').textContent = `ข้อ ${i+1} / ${total}`;
+    qc.innerHTML = `<div><b>Q${i+1}.</b> ${item.q}</div>`;
+    const box=document.createElement('div'); box.className='choices'; qc.appendChild(box);
+    const shuffledChoices = shuffle(item.choices.map((c,idx)=>({c,idx})));
+    let locked=false;
+
+    shuffledChoices.forEach(({c,idx})=>{
+      const div=document.createElement('div');
+      div.className='choice'; div.innerHTML=c; box.appendChild(div);
+      div.onclick=()=>{
+        if(locked) return; locked=true;
+        const isCorrect = idx===item.a;
+        if(isCorrect){div.classList.add('correct'); score++;}
+        else{div.classList.add('wrong');}
+        [...box.children].forEach(el=>{
+          const originalIndex=item.choices.indexOf(el.innerHTML);
+          if(originalIndex===item.a) el.classList.add('correct');
+        });
+        const exp=document.createElement('div'); exp.className='answer';
+        exp.innerHTML = `<b>เฉลย:</b> ${item.choices[item.a]}<br><span class="muted">เหตุผล:</span> ${item.why||'-'}`;
+        qc.appendChild(exp);
+        const nx=document.createElement('div'); nx.style.marginTop='10px';
+        nx.innerHTML = `<button id="btnNext">ถัดไป</button>`; qc.appendChild(nx);
+        document.getElementById('mcqScore').textContent = `คะแนน ${score}`;
+        document.getElementById('btnNext').onclick = ()=>{
+          i++; if(i>=total){
+            qc.innerHTML = `<div class="row"><div class="badge">จบชุด MCQ</div><div class="badge">คะแนนรวม: ${score} / ${total}</div></div>`;
+          } else { renderQ(); }
+        };
+      };
+    });
+  }
+
+  document.getElementById('mcqRestart').onclick=()=>{
+    order = shuffle(MCQ.map((_,i)=>i)); i=0; score=0;
+    document.getElementById('mcqScore').textContent='คะแนน 0';
+    renderQ();
+  };
+
+  renderQ();
+}
+
+/* 4) TF renderer (เรียกซ้ำได้) */
+function initTF(){
+  const host=document.getElementById('mode-tf');
+  host.innerHTML=''; // เคลียร์ก่อน
+  let order = shuffle(TF.map((_,i)=>i));
+  let i=0, score=0;
+  const total = order.length;
+
+  if(total===0){
+    host.innerHTML = `<div class="qcard">ยังไม่มีโจทย์ True/False</div>`;
+    return;
+  }
+
+  const hud=document.createElement('div'); hud.className='scorebox';
+  hud.innerHTML = `<div class="badge" id="tfProg">ข้อ 1 / ${total}</div>
+                   <div class="badge" id="tfScore">คะแนน 0</div>
+                   <button class="secondary" id="tfRestart">เริ่มใหม่/สุ่มใหม่</button>`;
+  host.appendChild(hud);
+
+  const qc=document.createElement('div'); qc.className='qcard'; host.appendChild(qc);
+
+  function renderQ(){
+    const item=TF[order[i]];
+    document.getElementById('tfProg').textContent=`ข้อ ${i+1} / ${total}`;
+    qc.innerHTML = `<div><b>Q${i+1}.</b> ${item.q}</div>`;
+
+    const btnRow=document.createElement('div'); btnRow.style.display='flex'; btnRow.style.gap='8px';
+    const btnT=document.createElement('button'); btnT.textContent='ถูก (True)';
+    const btnF=document.createElement('button'); btnF.textContent='ผิด (False)'; btnF.className='secondary';
+    btnRow.append(btnT,btnF); qc.appendChild(btnRow);
+
+    let locked=false;
+    function mark(ans){
+      if(locked) return; locked=true;
+      const cor = item.a===ans; if(cor) score++;
+      document.getElementById('tfScore').textContent=`คะแนน ${score}`;
+      const exp=document.createElement('div'); exp.className='answer';
+      exp.innerHTML=`<b>เฉลย:</b> ${item.a?'<span class="ok">True</span>':'<span class="ng">False</span>'} · <span class="muted">เหตุผล:</span> ${item.why||'-'}`;
+      qc.appendChild(exp);
+      const nx=document.createElement('div'); nx.style.marginTop='10px'; nx.innerHTML='<button id="tfNext">ถัดไป</button>'; qc.appendChild(nx);
+      document.getElementById('tfNext').onclick=()=>{
+        i++; if(i>=total){
+          qc.innerHTML = `<div class="row"><div class="badge">จบชุด True/False</div><div class="badge">คะแนนรวม: ${score} / ${total}</div></div>`;
+        } else { renderQ(); }
+      };
+    }
+    btnT.onclick=()=>mark(true); btnF.onclick=()=>mark(false);
+  }
+
+  document.getElementById('tfRestart').onclick=()=>{
+    order = shuffle(TF.map((_,i)=>i)); i=0; score=0;
+    document.getElementById('tfScore').textContent='คะแนน 0';
+    renderQ();
+  };
+
+  renderQ();
+}
+
+/* 5) ฟังก์ชันสาธารณะ: เรียกหลังเติมข้อสอบ */
+function refreshQuizzes(){
+  updateTabTitles();
+  renderTabs();
+  initMCQ();
+  initTF();
+  updateView(); // รีเฟรช state การซ่อน/แสดง
+}
+
+/* เริ่มต้นรอบแรก (กรณีมีข้อแล้ว) */
+refreshQuizzes();
+
+/* ถ้าคุณเติมข้อ TF ภายหลัง (เช่นท้ายไฟล์): 
+   TF.push({q:'...', a:true, why:'...'});
+   refreshQuizzes();  // ← เรียกอีกรอบ เพื่อให้ TF โผล่
+*/
+</script>
+
+</body>
+</html>
